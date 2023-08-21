@@ -1,0 +1,122 @@
+@import url('https://fonts.googleapis.com/css2?family=Abel&family=Fasthand&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Abel&family=Fasthand&family=Poppins&display=swap');
+:root{
+    --fasthand-font:'Fasthand', cursive;
+    --poppins-font:'Poppins', sans-serif;
+    --silver:silver;
+    --white:white;
+    --black:#000;
+    --gradient-1:linear-gradient(90deg, rgba(7, 9, 27, 0.50) 0%, rgba(61, 105, 196, 0.40) 100%);
+    --gradient-2:linear-gradient(90deg, rgba(46, 102, 161, 0.40) 0%, rgba(80, 149, 208, 0.66) 52.54%, rgba(255, 255, 255, 0.40) 100%);
+    --darkslate-blue:darkslateblue;
+
+}
+
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+body{
+    width: 1440px;
+    height: 1024px;
+    flex-shrink: 0;
+    background: var(--black);
+}
+.sidebar_container{
+    position: fixed;
+    scroll-behavior: smooth;
+    width: auto;
+
+}
+
+.leftsidebar_1{
+    display: block;
+    position: absolute;
+    width: 100px;
+    height: 1080px;
+    flex-shrink: 0;
+    border-right: 1px solid var(--white, #FFF);
+    border-bottom: 1px solid var(--white, #FFF);
+    background: var(--black, #000);
+}
+.leftsidebar_1_container{
+    width: 100%;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.stuvibe_logo_1{
+    width: 27.388px;
+    height: 16.364px;
+    flex-shrink: 0;
+    position: relative;
+    top: 40px;
+    left: 36px;
+}
+.leftsidebar_1_features{
+    display: flex;
+    width: 17px;
+    height: 790px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 35px;
+    flex-shrink: 0;
+    margin: 100px 37px;
+}
+
+.leftsidebar_2{
+    display: none;
+    width: 233px;
+    height: 4654px;
+    flex-shrink: 0;
+    border-right: 0.5px solid var(--white, #FFF);
+    background: var(--black);
+}
+
+.stuvibe_logo_2{
+    position: relative;
+    top: 22px ;
+    left: 40px;
+}
+.stuvibe_logo_2 p{
+    width: 133px;
+    height: 84.875px;
+    flex-shrink: 0;
+    color: #FFF;
+    font-family: var(--fasthand-font);
+    font-size: 56px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%; /* 84px */
+}
+.leftsidebar_2_features{
+    display: inline-flex;
+    height: 1350.422px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 35px;
+    flex-shrink: 0;
+    margin: 80px 42px;
+}
+.feature_leftsidebar_2 p{
+    color: #FFF;
+    font-family: var(--poppins-font);
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: 150%; /* 18px */
+}
+.feature_leftsidebar_2{
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+.leftsidebar_2_container{
+    width: 100%;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+}

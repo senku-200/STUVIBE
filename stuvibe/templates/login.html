@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="static/styles/login.css?{% now 'U' %}">
+</head>
+<body>
+    <main>
+        <div class="cover_image"></div>
+        <div class="title">
+            <p>stuvibe</p>
+        </div>
+        <div class="container">
+            <div class="login_header">
+                <div class="login_header_title">
+                    <p>Login</p>
+                </div>
+                <div class="login_header_signup">
+                    <p>Dosen't Has An Account? </p>
+                    <a href="{% url 'signup' %}">Signup</a>
+                </div>
+            </div>
+            <form method="post">
+                {% csrf_token %}
+                <div class="login_container">
+                    <div class="login_input_container">
+                        <div class="input_container">
+                            <label>Username</label>
+                            <input required type="text" name="username">
+                        </div>
+                        <div class="input_container">
+                            <label>password</label>
+                            <input required type="password" name="password">
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="sub_btn">Login</button>
+            </form>
+        </div>
+    </main>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Get all form elements
+            const forms = document.querySelectorAll("form");
+        
+            // Attach event listener to each form
+            forms.forEach(function(form) {
+                form.addEventListener("keydown", function(event) {
+                    // Check if the pressed key is Enter and the target is not a textarea
+                    if (event.key === "Enter" && event.target.tagName !== "TEXTAREA") {
+                        // Prevent the default form submission behavior
+                        event.preventDefault();
+                    }
+                });
+            });
+        });
+        </script>
+</body>
+</html>
