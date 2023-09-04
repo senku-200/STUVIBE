@@ -17,8 +17,5 @@ class CreatePost(ModelForm):
 class CreateComment(ModelForm):
     class Meta:
         model = models.Comment
-        fields = ['post','content']
-        widgets = {
-            'post': forms.ClearableFileInput(attrs={'multiple': True}),
-        }   
+        fields = ['content']
         
