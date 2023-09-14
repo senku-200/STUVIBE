@@ -23,7 +23,6 @@ body{
     display: flex;
 }
 .cover_image{
-    
     position: absolute;
     width: 100%;
     height: 100%;
@@ -324,3 +323,24 @@ form{
 }
 
 
+.leftsidebar_profile_img{
+    width: 20px;
+    height: 20px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 100%;
+}
+.leftsidebar_profile_img img{
+    width: 100%;
+    height: auto;
+}
+.leftsidebar_1{
+    position: fixed;
+    height: 650px;
+    overflow-y: scroll;
+}
+.leftsidebar_1::-webkit-scrollbar{
+    display: none;
+}

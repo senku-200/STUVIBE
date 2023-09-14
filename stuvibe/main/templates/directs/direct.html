@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Messages</title>
+	<link rel="stylesheet" href="../static/styles/styles.css?{% now 'U' %}">
+    <link rel="stylesheet" href="../static/styles/message.css?{% now 'U' %}">
+</head>
+<body>
+	<div class="leftsidebar">
+        {% include 'leftbar.html' %}
+    </div>
+	<main>
+		<div class="current_msg_users_con">
+			<p class="username">@{{user}}</p>
+			<p class="message_title">Messages</p>
+			<div class="msg_user_details_con">
+				{% for message in messages %}
+					<a href="{% url 'directs' username=message.user.username %}">
+						<div class="msg_user">
+							<div class="msg_user_profile">
+								<img src="/{{message.user.profile_photo}}" alt="" srcset="">
+							</div>
+							<div class="msg_user_details">
+								<p class="msg_username">{{message.user}}</p>
+								<p class="recent_msg" hidden></p>
+							</div>
+						</div>
+					</a>
+				{% endfor %}
+			</div>
+		</div>
+		<div class="main_msg_container">
+			{% if display %}
+			<div class="msg_header">
+				<div class="msg_header_con">
+					<a href="{% url 'profile' active_direct.id %}">
+						<div class="msg_header_con_profile">
+							<img src="/{{active_direct.profile_photo}}" alt="" srcset="">
+						</div>
+					</a>
+					<a href="{% url 'profile' active_direct.id %}">
+						<p class="msg_header_con_username">{{active_direct}}</p>
+					</a>
+				</div>
+			</div>
+			<div class="msg_main">
+					<div class="msg_body">
+						<div class="msg" id="display"></div>
+					</div>
+					<form method="POST" id="post-form">
+						{% csrf_token %}
+						<input type="hidden" name="to_user" id="to_user" value="{{active_direct}}">
+						<input name="body" id="body" type="text" class="form-control" placeholder="Type your message">
+						<button class="btn btn-primary" type="submit" hidden>Send</button>
+					</form>
+			</div>
+			{% else %}
+				<div class="static_body">
+					<P>Start Messaging</P>
+				</div>
+			{% endif %}
+		</div>
+	</main>
+	<script   src="https://code.jquery.com/jquery-3.1.1.min.js"   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="   crossorigin="anonymous"></script>
+	{% if display %}
+		<script>
+			function scrollToBottom() {
+				var messageContainer = document.querySelector('.msg');
+				messageContainer.scrollTop = messageContainer.scrollHeight;
+			}
+			$(document).ready(function(){
+			setInterval(function(){
+				$.ajax({
+					type: 'GET',
+					url : "getMessages/{{active_direct}}/",
+					success: function(response){
+						$("#display").empty();
+						for (var msg in response.messages)
+						{
+							if (response.messages[msg].sender_id == "{{user.id}}"){
+								var temp='<p class="message by_sender">'+response.messages[msg].body+'</p>'
+								$("#display").append(temp);
+							}
+							else{
+								var temp='<p class="message by_receiver">'+response.messages[msg].body+'</p>'
+								$("#display").append(temp);
+							}
+							scrollToBottom();
+						}
+					},
+					error: function(response){
+						alert('An error occured')
+					}
+				});
+			},1000);
+			})
+		</script>
+		<script type="text/javascript">
+			$(document).on('submit','#post-form',function(e){
+			  e.preventDefault();
+		  
+			  $.ajax({
+				type:'POST',
+				url:'{{active_direct}}',
+				data:{
+					to_user:$('#to_user').val(),
+					body:$('#body').val(),
+				  	csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+				},
+				success: function(data){
+				   //alert(data)
+				}
+			  });
+			  document.getElementById('body').value = ''
+			});
+		</script>
+	{% endif %}
+</body>
+</html>

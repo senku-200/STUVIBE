@@ -32,6 +32,8 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'ai_init',
+    'channels',
+    'directs',
     'main.apps.MainConfig',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -39,6 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'ckeditor',
+    'ckeditor_uploader'
 ]
 
 MIDDLEWARE = [
@@ -73,7 +77,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'stuvibe.wsgi.application'
 AUTH_USER_MODEL = 'main.User'
-
+ASGI_APPLICATION = "stuvibe.routing.application"
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
@@ -124,6 +128,18 @@ STATIC_URL = 'static/'
 STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
+CKEDITOR_UPLOAD_PATH = "uploads/"
+CKEDITOR_IMAGE_BACKEND = "pillow"
+MEDIA_URL = '/media/'
+MEDIA_ROOT = '/media/'
+CKEDITOR_CONFIGS = {
+    'default': {
+        'height':'400px',
+        'width':'1000px',
+        'image_width':'100px',
+    }
+}
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field

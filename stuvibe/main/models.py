@@ -2,8 +2,9 @@ from typing import Any
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 # Create your models here.
-
+from django.db.models import Max
 from . import choices 
+from ckeditor_uploader.fields import RichTextUploadingField
 class User(AbstractUser):
     username = models.CharField(max_length=100,unique=True)
     email = models.EmailField(unique=True)
@@ -38,12 +39,18 @@ class PostDetails(models.Model):
     likes = models.ManyToManyField(User,related_name='liked_post',blank=True)
     created = models.DateTimeField(auto_now=True)
     updated = models.DateTimeField(auto_now_add=True)
+    class Meta:
+        ordering = ['-updated','-created']
     def __str__(self):
         return self.title
     
 class Post(models.Model):
     post_details = models.ForeignKey(PostDetails,on_delete=models.CASCADE,related_name='post_details')
     post = models.FileField(upload_to='./static/data/posts')
+    created = models.DateTimeField(auto_now=True)
+    updated = models.DateTimeField(auto_now_add=True)
+    class Meta:
+        ordering = ['-updated','-created']
     
 
 class Comment(models.Model):
@@ -98,32 +105,70 @@ flexibility_choices = [
 ]
 class Portfolio(models.Model):
     portfolio_user = models.ForeignKey(User,on_delete=models.CASCADE)
+    portfolio_username = models.CharField(max_length=500,default='')
     followers = models.ManyToManyField(User,related_name='portfolio_followers',blank=True)
     job_type = models.TextField(choices=job_type_choices)
     flexibility = models.TextField(choices=flexibility_choices)
     domain = models.TextField(blank=True,null=True)
     updated = models.DateTimeField(auto_now=True)
     created = models.DateTimeField(auto_now_add=True)
-    # def __str__(self):
-    #     return self.portfolio_user
-    
+    def __str__(self):
+        return self.portfolio_username
+
 class PortfolioProjectsDetails(models.Model):
     portfolio = models.ForeignKey(Portfolio,related_name='portfolio',on_delete=models.CASCADE)
     title = models.CharField(max_length=60)
-    discription = models.TextField(blank=True,null=True)
+    description = models.TextField(blank=True,null=True)
     tags = models.TextField(blank=True,null=True)
     tools_used = models.TextField(blank=True,null=True)
-    project_cover = models.ImageField(upload_to='./static/data/project_cover')
+    project_cover = models.ImageField(upload_to='./static/data/project_cover',null=True,blank=True)
     appreciations = models.ManyToManyField(User,related_name='appreciations',blank=True)
     views = models.ManyToManyField(User,related_name='portfolio_views',blank=True)
+    project_files = RichTextUploadingField()
     updated = models.DateTimeField(auto_now=True)
     created = models.DateTimeField(auto_now_add=True)
     def __str__(self):
         return self.title
 
-class PortfolioProjects(models.Model):
-    portfolio_details = models.ForeignKey(PortfolioProjectsDetails,related_name='portfolio_details',on_delete=models.CASCADE)
-    project_files = models.FileField(upload_to='./static/data/project_files',null=True,blank=True)
-    project_files_text = models.TextField(null=True,blank=True)
-    updated = models.DateTimeField(auto_now=True)
-    created = models.DateTimeField(auto_now_add=True)
+
+
+class Message(models.Model):
+    user = models.ForeignKey(User,on_delete=models.CASCADE,related_name='user')
+    reciepient = models.ForeignKey(User,on_delete=models.CASCADE,related_name='to_user')
+    sender = models.ForeignKey(User,on_delete=models.CASCADE,related_name='from_user')
+    is_read = models.BooleanField(default=False)
+    body = models.TextField()
+    date = models.DateTimeField(auto_now_add=True)
+
+    def sender_message(from_user,to_user,body):
+        sender_message = Message(
+            user = from_user,
+            sender = from_user,
+            reciepient = to_user,
+            body = body,
+            is_read = True
+        )
+        sender_message.save()
+        reciepient_message = Message(
+            user = to_user,
+            sender = from_user,
+            reciepient = from_user,
+            body = body,
+            is_read = True
+        )
+        reciepient_message.save()
+
+        return sender_message
+    def get_message(user):
+        users = []
+        messages = Message.objects.filter(user = user).values('reciepient').annotate(last=Max('date')).order_by("-last")
+        for message in messages:
+            users.append({
+                'user':User.objects.get(pk=message['reciepient']),
+                'last':message['last'],
+                'unread':Message.objects.filter(user=user,reciepient__pk = message['reciepient'],is_read = False).count()
+            })
+        return users
+
+ 
+ 

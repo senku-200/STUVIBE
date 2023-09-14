@@ -23,13 +23,13 @@
     margin: 0px;
     padding: 0px;
 }
-
 .createpost_form{
-    height: 100%;
-    width: 100%;
+    height: auto;
+    width: calc(100%-100px);
     margin: 0px;
     position: relative;
     top: -10px;
+    left: 100px;
 }
 
 
@@ -861,7 +861,7 @@ input{
     align-items: center;
     border-radius:100%;
 }
-img{
+.preview_profile_image img{
     width: 100%;
     height: auto;
 }

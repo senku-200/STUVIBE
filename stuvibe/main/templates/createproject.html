@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>portfolio</title>
+    <link rel="stylesheet" href="./static/styles/createproject.css?{% now 'U' %}">
+    <!-- <link rel="stylesheet" href="../static/styles/styles.css?{ now 'U' %}"> -->
+    <link rel="stylesheet" href="../static/styles/leftbar.css?{ now 'U' %}">
+</head>
+<body>
+    <div class="background_cover">
+        <img src="../static/assests/aesthetic-retro-vaporwave-landscape.jpg" alt="">
+    </div>
+    <div class="leftsidebar">
+        {% include 'leftbar.html' %}
+    </div>
+    <form action="" method="post" enctype="multipart/form-data" class="con_form">
+        <div class="section_1">
+            <div class="main_con">
+                <p >Create Project</p>
+                <div class="details_con">
+                    <div class="input_area ">
+                        <label for="">Title:</label>
+                        <input type="text" name="title" class="title" required placeholder="Type your title...">
+                    </div>
+                    <div class="input_area ">
+                        <label for="">description:</label>
+                        <input type="text" name="description" class="description" placeholder="Type your description...">
+                    </div>
+                    <div class="input_area ">
+                        <label for="">tags:</label>
+                        <input type="text" name="tags" class="tags" placeholder="Type your tags...">
+                    </div>
+                    
+                    <div class="input_area ">
+                        <label for="">tools Used:</label>
+                        <input type="text" name="tools_used" class="tools_used" placeholder="Type your tools_used...">
+                    </div>
+                    <div class="input_area ">
+                        <label for="">project cover:</label>
+                        <input type="file" name="project_cover" class="project_cover">
+                    </div>
+                </div>
+                <button type="button" class="next btn" onclick="change()">next</button>
+            </div>
+        </div>
+        <div class="section_2 activate">
+                {% csrf_token %}
+                {{form.as_p}}
+                {{form.media}}
+                <button type="submit" class="sub_btn">submit</button>
+                <button type="button" class="previous btn" onclick="change()">
+                    <?xml version="1.0" encoding="utf-8"?><!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
+                    <svg width="800px" height="800px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <polyline fill="none" stroke="#000000" stroke-width="2" points="7 2 17 12 7 22" transform="matrix(-1 0 0 1 24 0)"/>
+                    </svg>
+                </button>    
+        </div>
+    </form>
+    <script>
+        let btn = document.querySelector('.btn')
+        change=()=>{
+            document.querySelector('.section_1').classList.toggle('activate')
+            document.querySelector('.section_2').classList.toggle('activate')
+        }
+    </script>
+</body>
+</html>

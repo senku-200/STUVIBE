@@ -1,0 +1,43 @@
+<link rel="stylesheet" href="../static/styles/create_portfolio.css?{ now 'U' %}">
+{% extends 'main.html' %}
+{% block content %}
+<main>
+    <form action="" method="post">
+        <p id="title">create portfolio</p>
+        {% csrf_token %}
+        <div class="form_con">
+            <div class="input_area ">
+                <label for="">username:</label>
+                <input type="text" name="portfolio_username" class="portfolio_username" required placeholder="Type you username...">
+            </div>
+            <div class="input_area">
+                <label for="id_domain">Job type:</label>
+                <select name="job_type" required="" id="id_job_type">
+                    <option value="" selected="">---------</option>
+                  
+                    <option value="freelancer">freelancer</option>
+                  
+                    <option value="job">job</option>
+                  
+                  </select>
+            </div>
+            <div class="input_area ">
+                <label for="id_domain">flexibility:</label>
+                <select name="flexibility" required="" id="id_flexibility">
+                    <option value="" selected="">---------</option>
+                  
+                    <option value="fulltime">fulltime</option>
+                  
+                    <option value="parttime">parttime</option>
+                  
+                  </select>
+            </div>
+            <div class="input_area ">
+                <label for="id_domain">Domain:</label>
+                <input type="text" name="domain" class="domain" required placeholder="Type you domain...">
+            </div>
+        </div>
+        <button type="submit" class="sub_btn">submit</button>
+    </form>
+</main>
+{% endblock content %}

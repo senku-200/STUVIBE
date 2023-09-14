@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>portfolio</title>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/styles/default.min.css ">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+</head>
+<body>
+    <form action="" method="post">
+        {%form.as_p%}
+        {% csrf_token %}
+        <button type="submit">submit</button>
+    </form>
+</body>
+</html>

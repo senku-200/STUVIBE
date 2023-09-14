@@ -1,0 +1,434 @@
+.left-sidebar-child {
+    position: absolute;
+    height: 100%;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    background-color: #000;
+    border-right: 1px solid silver;
+    box-sizing: border-box;
+    width: 101px;
+  }
+  .frame-child {
+    position: relative;
+    width: 21px;
+    height: 21px;
+  }
+  .home,
+  .home-inner {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+  }
+  .home {
+    width: 25px;
+  }
+  .frame-inner,
+  .frame-item,
+  .vector-icon {
+    position: relative;
+    width: 20px;
+    height: 15.76px;
+  }
+  .frame-inner,
+  .vector-icon {
+    height: 20px;
+  }
+  .frame-inner {
+    width: 15.38px;
+  }
+  .frame-child1,
+  .vector-icon1 {
+    position: relative;
+    width: 20.2px;
+    height: 18.24px;
+  }
+  .frame-child1 {
+    width: 21px;
+    height: 18.97px;
+  }
+  .frame-child2,
+  .vector-icon2 {
+    position: relative;
+    width: 17.27px;
+    height: 20px;
+  }
+  .frame-child2 {
+    width: 21px;
+    height: 30.57px;
+  }
+  .ellipse-icon,
+  .vector-icon3 {
+    position: relative;
+    width: 20px;
+    height: 21.29px;
+  }
+  .ellipse-icon {
+    height: 20px;
+    object-fit: cover;
+  }
+  .home-parent {
+    position: absolute;
+    height: 100%;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 17px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 35px;
+  }
+  .frame,
+  .frame-icon {
+    position: absolute;
+    top: 164.75px;
+    left: 37px;
+    width: 26px;
+    height: 929.64px;
+    overflow: hidden;
+  }
+  .frame-icon {
+    top: 70.61px;
+    left: 36px;
+    width: 28px;
+    height: 19.26px;
+  }
+  .left-sidebar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: linear-gradient(#000, #000), linear-gradient(#000, #000),
+      linear-gradient(#000, #000), linear-gradient(#000, #000), #000;
+    border: 1px solid silver;
+    box-sizing: border-box;
+    width: 100px;
+    height: 1205px;
+  }
+  .freelancer-2-child,
+  .freelancer-2-item {
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: 7px;
+    width: 550px;
+    height: 400px;
+  }
+  .freelancer-2-item {
+    border-radius: 10px;
+  }
+  .freelancer-2-child1,
+  .freelancer-2-inner {
+    position: absolute;
+    top: 1px;
+    left: 0;
+    border-radius: 10px 10px 0 0;
+    width: 550px;
+    height: 100px;
+    object-fit: cover;
+  }
+  .freelancer-2-child1 {
+    top: 46px;
+    left: 220px;
+    border-radius: 50%;
+    width: 111px;
+    height: 111px;
+  }
+  .alberto-seveso,
+  .frame-child3 {
+    position: relative;
+  }
+  .frame-child3 {
+    width: 11.67px;
+    height: 15px;
+  }
+  .alberto-seveso-parent,
+  .group-parent {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 10px;
+    font-size: 12px;
+    font-family: Inter;
+  }
+  .alberto-seveso-parent {
+    position: absolute;
+    top: 163px;
+    left: 204px;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    font-size: 24px;
+    font-family: Poppins;
+  }
+  .freelance {
+    position: absolute;
+    top: 2px;
+    left: 9px;
+    font-weight: 600;
+  }
+  .freelance-wrapper {
+    position: relative;
+    border-radius: 48px;
+    background-color: #fff;
+    width: 68px;
+    height: 19px;
+  }
+  .full-time {
+    position: absolute;
+    top: 2px;
+    left: 10px;
+    font-weight: 600;
+  }
+  .frame-parent {
+    position: absolute;
+    top: 239px;
+    left: 197px;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 20px;
+    font-size: 10px;
+    color: #000;
+    font-family: Poppins;
+  }
+  .appreciations {
+    position: relative;
+    color: gray;
+  }
+  .k-group,
+  .k-parent {
+    position: absolute;
+    top: 299px;
+    left: 85px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+  }
+  .k-group {
+    left: 239px;
+  }
+  .k2,
+  .project-views {
+    position: absolute;
+    top: 0;
+    left: 25px;
+  }
+  .project-views {
+    top: 29px;
+    left: 0;
+    color: gray;
+  }
+  .k-container {
+    position: absolute;
+    top: 299px;
+    left: 361px;
+    width: 104px;
+    height: 58px;
+  }
+  .freelancer-2-child2,
+  .line-div {
+    position: absolute;
+    top: 293.5px;
+    left: 213.5px;
+    border-right: 1px solid #fff;
+    box-sizing: border-box;
+    width: 1px;
+    height: 59px;
+  }
+  .freelancer-2-child2 {
+    left: 335.5px;
+  }
+  .freelancer-2 {
+    position: absolute;
+    top: 0;
+    left: 570px;
+    width: 550px;
+    height: 400px;
+  }
+  .rashmika-parent {
+    position: absolute;
+    top: 163px;
+    left: 205px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 5px;
+    font-size: 24px;
+    font-family: Poppins;
+  }
+  .freelancer-1,
+  .k5 {
+    position: absolute;
+    top: 0;
+    left: 37px;
+  }
+  .freelancer-1 {
+    left: 0;
+    width: 550px;
+    height: 400px;
+  }
+  .main1 {
+    position: relative;
+    width: 1120px;
+    height: 400px;
+  }
+  .k10,
+  .k7,
+  .main1-parent {
+    position: absolute;
+    top: 0;
+    left: 35px;
+  }
+  .k10,
+  .main1-parent {
+    left: 24px;
+  }
+  .main1-parent {
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 20px;
+  }
+  .frame2 {
+    position: absolute;
+    top: 350px;
+    left: 101px;
+    width: 1138px;
+    height: 820px;
+    overflow: hidden;
+  }
+  .freelancer-banner-1 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1340px;
+    height: 250px;
+    object-fit: cover;
+  }
+  .rectangle-div {
+    position: absolute;
+    top: 0;
+    left: 1px;
+    background-color: rgba(0, 0, 0, 0.59);
+    width: 1339px;
+    height: 251px;
+    mix-blend-mode: hard-light;
+  }
+  .find-the-perfect,
+  .freelancers {
+    margin-block-start: 0;
+    margin-block-end: 18px;
+  }
+  .find-the-perfect {
+    font-size: 24px;
+  }
+  .freelancers-find-the-container {
+    position: absolute;
+    top: 51px;
+    left: calc(50% - 281px);
+    display: inline-block;
+    width: 563px;
+    height: 149px;
+  }
+  .frame-child7,
+  .freelancer-banner-1-parent {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1340px;
+    height: 251px;
+  }
+  .frame-child7 {
+    background-color: #000;
+    width: 1337px;
+    height: 100px;
+  }
+  .frame-input,
+  .sorting {
+    position: absolute;
+    top: 18px;
+    left: 1030px;
+    width: 200px;
+    height: 52.84px;
+  }
+  .frame-input {
+    border: 1.5px solid gray;
+    display: block;
+    font-family: Inter;
+    font-size: 13px;
+    background-color: transparent;
+    top: 27px;
+    left: 698px;
+    border-radius: 44px;
+    box-sizing: border-box;
+    width: 284px;
+    height: 44.84px;
+  }
+  .results {
+    position: absolute;
+    top: 40px;
+    left: 110px;
+    font-weight: 600;
+  }
+  .vector-icon6 {
+    position: absolute;
+    height: 17%;
+    width: 1.65%;
+    top: 41%;
+    right: 95.51%;
+    bottom: 42%;
+    left: 2.84%;
+    max-width: 100%;
+    overflow: hidden;
+    max-height: 100%;
+  }
+  .rectangle-parent {
+    position: absolute;
+    top: 250px;
+    left: 1px;
+    background: linear-gradient(#000, #000), linear-gradient(#000, #000),
+      linear-gradient(#000, #000), linear-gradient(#000, #000), #000;
+    width: 1337px;
+    height: 100px;
+    font-size: 16px;
+    font-family: Inter;
+  }
+  .frame1,
+  .header {
+    position: absolute;
+    top: 0;
+    width: 1340px;
+  }
+  .header {
+    left: 0;
+    height: 350px;
+    font-size: 64px;
+    font-family: Poppins;
+  }
+  .frame1 {
+    left: 101px;
+    height: 1170px;
+    overflow: hidden;
+  }
+  .freelancing-homepage {
+    position: relative;
+    background-color: #000;
+    width: 100%;
+    height: 1205px;
+    overflow: hidden;
+    text-align: center;
+    font-size: 16px;
+    color: #fff;
+    font-family: Inter;
+  }
+  
