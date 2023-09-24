@@ -148,7 +148,7 @@ form{
     background-color: #fff;
     cursor: pointer;
     transition: .5s;
-    margin-top: 30px;
+    margin-top: 0px;
 }
 .sub_btn:hover{
     background-color: silver;
@@ -183,4 +183,10 @@ label[for = 'id_project_files']{
 img{
     width: 500px;
     height: auto;
+}
+#id_project_cover{
+    display: none;
+}
+.form_main_container{
+    margin-top: 20px;
 }

@@ -21,3 +21,10 @@ def custom_time_since(value):
         return f"{minutes} minutes"
     else:
         return f"{seconds} seconds"
+    
+@register.filter
+def endswith(value, arg):
+    """
+    Custom template filter to check if a string ends with a specified value.
+    """
+    return value.endswith(arg)

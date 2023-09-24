@@ -27,7 +27,7 @@
                 <div class="preview_template">
                     <div class="preview_template_header">
                         <div class="preview_profile_image">
-                                <img src='{{user.profile_photo}}' alt="profile_img" srcset="">
+                            <img src='/media/{{user.profile_photo}}' alt="profile_img" srcset="">
                         </div>
                         <div class="preview_profile_name">
                             <p>{{user}}</p>
@@ -345,13 +345,22 @@
             }
             
 
-            console.log(count)
             const fileReader = new FileReader();
             fileReader.onload = ()=>{
                 const fileURL = fileReader.result;
                 let imgTag = `<img src=${fileURL} alt="">`
-                picturingArea.innerHTML = imgTag;
-                picturingArea_preview.innerHTML = imgTag;
+                fileType = fileURL.split('/')[1].split(';')[0]
+                if (fileType == 'jpg' | fileType == 'jpeg' | fileType == 'png' | fileType == 'gif'){
+                    fileTag = `<img src="${fileURL}" alt="${fileURL}">`
+                } 
+                else if(fileType == 'mp4' | fileType == 'avi'){
+                    fileTag = `<video controls width="300"><source src="${fileURL}" type="video/mp4"></video>`
+                }
+                else if(fileType == 'mp3'){
+                    fileTag = `<audio controls><source src="${fileURL}" type="audio/mpeg"></audio>`
+                }
+                picturingArea.innerHTML = fileTag;
+                picturingArea_preview.innerHTML = fileTag;
             }
             fileReader.readAsDataURL(file);
         }

@@ -8,6 +8,7 @@ class UserForm(UserCreationForm):
     class Meta:
         model = models.User
         fields = ['username','email','first_name','last_name','dob','profile_photo','profile_banner','degree','branch','country','state','district','bio','university','gender']
+
 class CreatePost(ModelForm):
     class Meta:
         model = models.PostDetails
@@ -24,7 +25,7 @@ class PortfolioForm(ModelForm):
 class PortfolioProjectsDetailsForm(ModelForm):
     class Meta:
         model = models.PortfolioProjectsDetails
-        fields = ['project_files']
+        fields = ['project_files','project_cover']
 
 
  

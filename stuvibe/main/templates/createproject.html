@@ -31,8 +31,7 @@
                     <div class="input_area ">
                         <label for="">tags:</label>
                         <input type="text" name="tags" class="tags" placeholder="Type your tags...">
-                    </div>
-                    
+                    </div>               
                     <div class="input_area ">
                         <label for="">tools Used:</label>
                         <input type="text" name="tools_used" class="tools_used" placeholder="Type your tools_used...">
@@ -46,16 +45,18 @@
             </div>
         </div>
         <div class="section_2 activate">
-                {% csrf_token %}
+            {% csrf_token %}
+            <div class="form_main_container">
                 {{form.as_p}}
                 {{form.media}}
-                <button type="submit" class="sub_btn">submit</button>
-                <button type="button" class="previous btn" onclick="change()">
+            </div>
+            <button type="submit" class="sub_btn">submit</button>
+            <button type="button" class="previous btn" onclick="change()">
                     <?xml version="1.0" encoding="utf-8"?><!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
                     <svg width="800px" height="800px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <polyline fill="none" stroke="#000000" stroke-width="2" points="7 2 17 12 7 22" transform="matrix(-1 0 0 1 24 0)"/>
                     </svg>
-                </button>    
+            </button>    
         </div>
     </form>
     <script>

@@ -15,15 +15,20 @@
 		<div class="current_msg_users_con">
 			<p class="username">@{{user}}</p>
 			<p class="message_title">Messages</p>
+			<div class="user_search">
+				<form action="{% url 'inbox' %}" method="GET" class="search_form">
+					<input type="text" name="q" placeholder="Search the user...">
+				</form>
+			</div>
 			<div class="msg_user_details_con">
-				{% for message in messages %}
-					<a href="{% url 'directs' username=message.user.username %}">
+				{% for message in users %}
+					<a href="{% url 'directs' username=message.username %}">
 						<div class="msg_user">
 							<div class="msg_user_profile">
-								<img src="/{{message.user.profile_photo}}" alt="" srcset="">
+								<img src="/media/{{message.profile_photo}}" alt="" srcset="">
 							</div>
 							<div class="msg_user_details">
-								<p class="msg_username">{{message.user}}</p>
+								<p class="msg_username">{{message.username}}</p>
 								<p class="recent_msg" hidden></p>
 							</div>
 						</div>
@@ -37,7 +42,7 @@
 				<div class="msg_header_con">
 					<a href="{% url 'profile' active_direct.id %}">
 						<div class="msg_header_con_profile">
-							<img src="/{{active_direct.profile_photo}}" alt="" srcset="">
+							<img src="/media/{{active_direct.profile_photo}}" alt="" srcset="">
 						</div>
 					</a>
 					<a href="{% url 'profile' active_direct.id %}">
@@ -87,7 +92,7 @@
 								var temp='<p class="message by_receiver">'+response.messages[msg].body+'</p>'
 								$("#display").append(temp);
 							}
-							scrollToBottom();
+							// scrollToBottom();
 						}
 					},
 					error: function(response){

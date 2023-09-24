@@ -6,6 +6,10 @@ from django.contrib.auth import login,logout
 from django.contrib.auth import authenticate
 from django.contrib.auth.decorators import login_required
 
+
+
+
+
 @login_required(login_url='login')
 def profile(request,pk):
     user = models.User.objects.get(id = pk)
@@ -22,7 +26,7 @@ def profile(request,pk):
 @login_required(login_url='login')
 def home(request):
     
-    post = models.Post.objects.all()
+    post = models.PostDetails.objects.all()
     comments = models.Comment.objects.all()
     stories = models.Stories.objects.all()
     context = {
@@ -34,12 +38,12 @@ def home(request):
     
     if request.method == 'POST':
         post_id = request.POST.get('post_id')
-        post_obj = models.Post.objects.get(id=post_id)
+        post_obj = models.PostDetails.objects.get(id=post_id)
         profile = models.User.objects.get(id = request.user.id)
-        if profile in post_obj.post_details.likes.all():
-            post_obj.post_details.likes.remove(profile)
+        if profile in post_obj.likes.all():
+            post_obj.likes.remove(profile)
         else:
-            post_obj.post_details.likes.add(profile)
+            post_obj.likes.add(profile)
 
         like, created = models.Like.objects.get_or_create(user=profile, post_id=post_id)
 
@@ -70,6 +74,21 @@ def signup(request):
             print(form.errors)
     context = {'form':form}
     return render(request,'signup.html',context)
+
+
+def signup_edit(request,pk):
+    instance =  models.User.objects.get(id = pk)
+    if request.method == 'POST':
+        form = forms.UserForm(request.POST,request.FILES,instance = instance)
+        if form.is_valid():
+            form.save()
+        else:
+            print(form.errors)
+    else:
+        form = forms.UserForm(instance = instance)
+    context = {'form':form}
+    return render(request,'user_profile_edit.html',context)
+
 
 
 @login_required(login_url='login')
@@ -114,14 +133,13 @@ def login_(request):
 def like_unlike_post(request):
     user = request.user
     if request.method == 'POST':
-        post_id = request.POST.get('post_id')
-        post_obj = models.Post.objects.get(id=post_id)
-        profile = models.User.objects.get(user=user)
-
-        if profile in post_obj.post_details.likes.all():
-            post_obj.post_details.likes.remove(profile)
+        post_id = request.POST.get('like')
+        post_obj = models.PostDetails.objects.get(id=post_id)
+        profile = models.User.objects.get(id=user.id)
+        if profile in post_obj.likes.all():
+            post_obj.likes.remove(profile)
         else:
-            post_obj.post_details.likes.add(profile)
+            post_obj.likes.add(profile)
 
         like, created = models.Like.objects.get_or_create(user=profile, post_id=post_id)
 
@@ -135,26 +153,50 @@ def like_unlike_post(request):
 
             post_obj.save()
             like.save()
-    return redirect('home')
+        
 
 def comments(request,pk):
-    posts = models.Post.objects.get(id = pk)
-    postdetails = posts.post_details
+    postdetails = models.PostDetails.objects.get(id = pk)
+    posts = postdetails.post_details.all()
     post_comments = models.Comment.objects.filter(post=postdetails)
+    
     if request.method == 'POST':
         print(request.POST)
-        comment = forms.CreateComment(request.POST)
-        if comment.is_valid():
-            comment = comment.save(commit=False)
-            comment.post = postdetails
-            comment.content = request.POST.get('content')
-            comment.user = request.user
-            comment.save()
-        else:
-            print(comment.errors)
+        if 'content' in request.POST:
+            comment = forms.CreateComment(request.POST)
+            if comment.is_valid():
+                comment = comment.save(commit=False)
+                comment.post = postdetails
+                comment.content = request.POST.get('content')
+                comment.user = request.user
+                comment.save()
+            else:
+                print(comment.errors)
+        else:   
+            user = request.user
+            post_id = request.POST.get('post_id')
+            post_obj = models.PostDetails.objects.get(id=post_id)
+            profile = models.User.objects.get(id=user.id)
+            if profile in post_obj.likes.all():
+                post_obj.likes.remove(profile)
+            else:
+                post_obj.likes.add(profile)
+
+            like, created = models.Like.objects.get_or_create(user=profile, post_id=post_id)
+
+            if not created:
+                if like.value=='Like':
+                    like.value='Unlike'
+                else:
+                    like.value='Like'
+            else:
+                like.value='Like'
+
+                post_obj.save()
+                like.save()
 
     context = {
-        'post':posts,
+        'post':postdetails, 
         'comments':post_comments,
         "post_details":postdetails
     }
@@ -165,14 +207,14 @@ from django.http import HttpResponse
 def create_portfolio(request):
     existing_portfolio = models.Portfolio.objects.filter(portfolio_user=request.user).first()
     if existing_portfolio:
-        return redirect('portfolio')
+        return redirect('createproject')
     if request.method == 'POST':
         portfolio = forms.PortfolioForm(request.POST)
         if portfolio.is_valid():
             portfolio = portfolio.save(commit=False)
             portfolio.portfolio_user = request.user
             portfolio.save()
-            return redirect('portfolio')
+            return redirect('createproject')
         else:
             print(portfolio.errors)
     form = forms.PortfolioForm()
@@ -184,10 +226,14 @@ def create_portfolio(request):
 from django.shortcuts import get_object_or_404
 
 def createproject(request):
-    portfolio  = models.Portfolio.objects.filter(portfolio_user = request.user).first()
+    portfolio  = models.Portfolio.objects.filter(portfolio_user = request.user).exists()
+    if portfolio:
+        portfolio = models.Portfolio.objects.filter(portfolio_user = request.user).first()
+    else:
+        return redirect('create_portfolio')
     form = forms.PortfolioProjectsDetailsForm()
     if request.method == 'POST':
-        form = forms.PortfolioProjectsDetailsForm(request.POST)
+        form = forms.PortfolioProjectsDetailsForm(request.POST,request.FILES)
         if form.is_valid():
             form = form.save(commit=False)
             form.portfolio = portfolio
@@ -195,8 +241,8 @@ def createproject(request):
             form.description = request.POST.get('description')
             form.tags = request.POST.get('tags')
             form.tools_used = request.POST.get('tools_used')
-            form.project_cover = request.FILES.get('project_cover')
             form.save()
+            return redirect('portfolio')
         else:
             print(form.errors)
     context = {'form':form,'leftsidebar':'lite','user':request.user}
@@ -204,15 +250,25 @@ def createproject(request):
 
 
 def PortfolioHome(request):
-    portfolios = models.Portfolio.objects.all()
+    portfolios = models.PortfolioProjectsDetails.objects.all()
     context = {
         'portfolios':portfolios,
-        'leftbar':'lite'
+        'leftsidebar':'lite',
+        'portfolio_display':True,
     }
-    return render(request,'PortfolioHome.html',context)
+    return render(request,'portfolio.html',context)
 
-
-
+def projects(request,pk):
+    project = models.PortfolioProjectsDetails.objects.filter(id = pk)
+    project_files = project[0].project_files
+    
+    context = {
+        'project':project[0],
+        'project_files':project_files,
+        'projects_display':True,
+        'leftsidebar':'lite',
+    }
+    return render(request,'portfolio.html',context)
 
 from django.shortcuts import redirect, render, get_object_or_404
 from django.contrib.auth.decorators import login_required
@@ -220,10 +276,68 @@ from .models import Message
 from .models import User
 from django.db.models import Q
 from django.core.paginator import Paginator
+from django.db.models import Q
+def search_posts(request):
+    post_details = models.PostDetails.objects.all()
+    q = request.GET.get('q') if request.GET.get('q') != None else None
+    if q:
+        post_details = models.PostDetails.objects.filter(
+            Q(host__username__icontains = q)| 
+            Q(title__icontains = q)|   
+            Q(content__icontains = q)|    
+            Q(tags__icontains = q)
+        )
+    context = {
+        'post_details':post_details,
+        'leftsidebar':'lite',
+        'post_display':True,
+    }
+    return render(request, 'search_posts.html', context)
+
+
+def search_users(request):
+    users = models.User.objects.all()
+    q = request.GET.get('q') if request.GET.get('q') != None else None
+    if q:
+        users = models.User.objects.filter(
+            Q(username__icontains = q)| 
+            Q(first_name__icontains = q)|   
+            Q(last_name__icontains = q)|    
+            Q(university__icontains = q)|   
+            Q(aspiring__icontains = q)| 
+            Q(degree__icontains = q)|   
+            Q(branch__icontains = q)|   
+            Q(state__icontains = q)|    
+            Q(district__icontains = q)| 
+            Q(country__icontains = q)
+        )
+    context = {
+        'users':users,
+        'leftsidebar':'lite',
+        'post_display':False,
+    }
+    return render(request, 'search_users.html', context)
+
+
 
 @login_required
 def inbox(request):
     user = request.user
+    users = models.User.objects.all()
+    q = request.GET.get('q') if request.GET.get('q') != None else None
+    if q:
+        users = models.User.objects.filter(
+            Q(username__icontains = q)| 
+            Q(first_name__icontains = q)|   
+            Q(last_name__icontains = q)|    
+            Q(university__icontains = q)|   
+            Q(aspiring__icontains = q)| 
+            Q(degree__icontains = q)|   
+            Q(branch__icontains = q)|   
+            Q(state__icontains = q)|    
+            Q(district__icontains = q)| 
+            Q(country__icontains = q)
+        )
     messages = Message.get_message(user=request.user)
     active_direct = None
     directs = None
@@ -240,7 +354,7 @@ def inbox(request):
         'directs':directs,
         'messages': messages,
         'active_direct': active_direct,
-        # 'profile': profile,
+        'users':users,
         'leftsidebar':'lite',
         'display':False,
     }
@@ -248,7 +362,7 @@ def inbox(request):
 
 @login_required
 def Directs(request, username):
-    
+    users = models.User.objects.all()
     user  = request.user
     messages = Message.get_message(user=user)
     active_direct = models.User.objects.get(username = username)
@@ -264,6 +378,7 @@ def Directs(request, username):
     context = {
         'directs': directs,
         'messages': messages,
+        'users':users,
         'active_direct': active_direct,
         'leftsidebar':'lite',
         'display':True,
@@ -295,7 +410,7 @@ def UserSearch(request):
             'users': users_paginator,
             }
 
-    return render(request, 'directs/search.html', context)
+    return render(request, 'directs.html', context)
 
 def NewConversation(request, username):
     from_user = request.user

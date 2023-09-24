@@ -122,7 +122,7 @@
     align-items: center;
 
 }
-.preview_post_area_wrapper img{
+.preview_post_area_wrapper img,.preview_post_area_wrapper video{
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -490,6 +490,13 @@
     transition: .5s;
 }
 .create_post_area_main_1_container_main_wraper img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 5px;
+    transition: .5s;
+}
+.create_post_area_main_1_container_main_wraper video{
     width: 100%;
     height: 100%;
     object-fit: cover;

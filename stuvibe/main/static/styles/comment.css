@@ -33,9 +33,9 @@ body{
 }
 .cancel_cmt_section{
     position: absolute;
-    top: 10px;
-    right: 15px;
-    /* cursor: pointer; */
+    top: 20px;
+    right: 60px;
+    cursor: pointer;
 }
 .cancel_cmt_section svg{
     width: 20px;
@@ -59,7 +59,7 @@ body{
     display: flex;
     flex-direction: row;
 }
-.cmt_post{
+.cmt_post,.image-container,.main_post,.post-container{
     width: 500px;
     height: 658px;
     flex-shrink: 0;
@@ -70,6 +70,13 @@ body{
     justify-content: center;
     padding: 10px;
     padding-top: 20px;
+}
+.image-container img,.image-container video{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 5px;
+
 }
 .cmt_post img{
     width: 100%;
@@ -234,6 +241,15 @@ body{
     align-items: flex-start;
     gap: 20px;
 }
+.preview_LCS_like{
+    background-color: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+.ui_button svg{
+    background-color: transparent;
+}
 .cmt_section_3_likes{
     color: #FFF;
     font-family: Poppins;
@@ -242,6 +258,8 @@ body{
     font-weight: 400;
     line-height: 150%; /* 22.5px */
     white-space: nowrap;
+    display: flex;
+    gap: 5px;
 }
 .cmt_section_4{
     width: 751px;
@@ -297,4 +315,25 @@ body{
 }
 .cmt_created{
     font-size: 12px;
+}
+
+.prev-button svg,.next-button svg{
+    width: 10px;
+    height: auto;
+}
+.prev-button,.next-button{
+    width: 10px;
+    height: auto;
+    background-color: transparent;
+    border: none;
+    outline: none;
+}
+.prev-button{
+    position: absolute;
+    left: 20px;
+}
+.next-button{
+    position: absolute;
+    left: 450px;
+
 }

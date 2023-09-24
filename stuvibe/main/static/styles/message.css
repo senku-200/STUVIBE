@@ -30,6 +30,7 @@ main{
     left: 100px;
 }
 .current_msg_users_con{
+    position: relative;
     z-index: 50;
     width: 366px;
     height: 1080px;
@@ -42,7 +43,7 @@ main{
 }
 .current_msg_users_con::-webkit-scrollbar{
     display: block;
-    width: 10px;
+    width: 5px;
     background-color: #1a1a1a;
     padding-top: 10px;
     position: relative;
@@ -228,4 +229,26 @@ form{
 .by_receiver {
     background-color: #e74c3c; /* Red for receiver */
     align-self: flex-start; /* Start from the bottom and move up */
+}
+
+
+/* .user_search{
+    position: relative;
+    left: 100px;
+    top: 800px;
+} */
+.user_search form input{
+    width: 230px;
+    height: 30px;
+    background-color: #1a1a1a;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    padding-left: 10px;
+    color: white    ;
+}
+.search_form{
+    position: absolute;
+    top: 115px;
+    left: 120px;
 }

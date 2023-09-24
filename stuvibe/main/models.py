@@ -56,7 +56,6 @@ class Post(models.Model):
 class Comment(models.Model):
     user = models.ForeignKey(User,on_delete=models.CASCADE)
     post = models.ForeignKey(PostDetails,on_delete=models.CASCADE,related_name='comments')
-    # post_details = models.ForeignKey(PostDetails,on_delete=models.CASCADE,related_name='comments_post',null=True,blank=True)
     content = models.TextField()
     likes = models.ManyToManyField(User,related_name='liked_comment',blank=True)
     parent_comment = models.ForeignKey('self',on_delete=models.CASCADE,related_name='replies',null=True,blank=True)
@@ -87,12 +86,10 @@ LIKE_CHOICES = (
 
 class Like(models.Model): 
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    post = models.ForeignKey(Post, on_delete=models.CASCADE)
+    post = models.ForeignKey(PostDetails, on_delete=models.CASCADE)
     value = models.CharField(choices=LIKE_CHOICES, max_length=8)
     updated = models.DateTimeField(auto_now=True)
     created = models.DateTimeField(auto_now_add=True)
-    def __str__(self):
-        return f"{self.user}-{self.post}-{self.value}"
     
 
 job_type_choices = [

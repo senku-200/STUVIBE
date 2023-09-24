@@ -1,3 +1,6 @@
+{% load custom_filters %}
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,12 +18,12 @@
         <div class="profile_container">
             <div class="profile_header">
                 <div class="profile_banner">
-                    <img src="/{{user.profile_banner}}" alt="{{user.profile_banner}}">
+                    <img src="/media/{{user.profile_banner}}" alt="{{user.profile_banner}}">
                 </div>
             </div>
             <div class="prfoile_main_img_details_con">
                 <div class="profile_img">
-                    <img src="/{{user.profile_photo}}" alt="">
+                    <img src="/media/{{user.profile_photo}}" alt="">
                 </div>
                 <div class="main_profile_details">
                     <div class="primary_details">
@@ -38,12 +41,13 @@
                                 <path d="M0 21.9621C0 23.3166 0.475889 24.4697 1.42767 25.4215C2.37944 26.3732 3.53256 26.8491 4.88701 26.8491H21.1404C22.4766 26.8491 23.6206 26.3732 24.5723 25.4215C25.5241 24.4697 26 23.3166 26 21.9621V14.9336L22.7603 17.6517V21.9621C22.7603 22.4197 22.6047 22.8041 22.2936 23.1152C21.9824 23.4264 21.598 23.5911 21.1404 23.6094H4.88701C4.42943 23.6094 4.04505 23.4447 3.7339 23.1152C3.42274 22.7858 3.26716 22.4014 3.26716 21.9621V5.70868C3.26716 5.2694 3.42274 4.88502 3.7339 4.55556C4.04505 4.2261 4.42943 4.07052 4.88701 4.08883H13.0137V0.849121H4.88701C3.53256 0.849121 2.37944 1.32501 1.42767 2.27679C0.475889 3.22856 0 4.37253 0 5.70868V21.9621ZM4.88701 17.1026C4.88701 18.6766 5.19817 20.1867 5.82049 21.6326C6.11334 19.9487 6.75396 18.4204 7.74234 17.0476C8.73073 15.6749 9.95706 14.5675 11.4213 13.7256C12.8856 12.8836 14.4963 12.4077 16.2534 12.2979V17.1026L26 8.97584L16.2534 0.849121V5.70868C14.7159 5.70868 13.2425 6.01068 11.8332 6.6147C10.4238 7.21871 9.21577 8.03321 8.20908 9.0582C7.20239 10.0832 6.38789 11.2912 5.76557 12.6823C5.14326 14.0733 4.8504 15.5468 4.88701 17.1026Z" stroke="white"/>
                               </svg>
                         </div>
+                        <a href="{% url 'edit_profile' user.id %}">
                         <div class="edit">
                             <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 26 26" fill="none">
                                 <path d="M23.4083 6.39092L12.3204 17.4788C11.2162 18.5829 7.93862 19.0943 7.2064 18.3621C6.47418 17.6299 6.97395 14.3523 8.0781 13.2482L19.1777 2.14866C19.4514 1.85003 19.7827 1.60997 20.1519 1.44296C20.5209 1.27594 20.92 1.1854 21.325 1.17687C21.73 1.16835 22.1326 1.24197 22.5083 1.39331C22.8841 1.54464 23.2253 1.77059 23.5114 2.05743C23.7974 2.34427 24.0224 2.68609 24.1727 3.06227C24.323 3.43846 24.3956 3.84118 24.3859 4.24616C24.3763 4.65115 24.2846 5.05002 24.1167 5.41863C23.9486 5.78724 23.7077 6.11801 23.4083 6.39092Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                                 <path d="M11.4603 3.60144H5.64902C4.41602 3.60144 3.2336 4.09124 2.36173 4.9631C1.48988 5.83497 1 7.01746 1 8.25046V19.873C1 21.106 1.48988 22.2885 2.36173 23.1603C3.2336 24.0322 4.41602 24.522 5.64902 24.522H18.4338C21.0024 24.522 21.9206 22.43 21.9206 19.873V14.0617" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                               </svg>
-                        </div>
+                        </div></a>
                         <div class="settings">
                             <svg xmlns="http://www.w3.org/2000/svg" width="31" height="32" viewBox="0 0 31 32" fill="none">
                                 <path d="M15.3874 20.3039C17.8476 20.3039 19.8421 18.3094 19.8421 15.8491C19.8421 13.3889 17.8476 11.3944 15.3874 11.3944C12.9271 11.3944 10.9326 13.3889 10.9326 15.8491C10.9326 18.3094 12.9271 20.3039 15.3874 20.3039Z" stroke="white" stroke-width="2"/>
@@ -115,9 +119,21 @@
                         </div>
                     </div>
                     <div class="posts_main">
-                        {% for post in post %}
+                        {% for post_src in post %}
                             <div class="post_con">
-                                <img src="{{post.post}}" alt="">
+                                {% if post_src.post.file.name|lower|endswith:'.jpg' or post_src.post.file.name|lower|endswith:'.jpeg' or post_src.post.file.name|lower|endswith:'.png' or post_src.post.file.name|lower|endswith:'.gif' %}
+                                <img src="{{ post_src.post.url }}" alt="Post Image">
+                                {% elif post_src.post.file.name|lower|endswith:'.mp4' or post_src.post.file.name|lower|endswith:'.avi' %}
+                                    <video controls width="300">
+                                        <source src="{{ post_src.post.url }}" type="video/mp4">
+                                        Your browser does not support the video tag.
+                                    </video>
+                                {% elif post.post.file.name|lower|endswith:'.mp3' %}
+                                    <audio controls>
+                                        <source src="{{ post_src.post.url }}" type="audio/mpeg">
+                                        Your browser does not support the audio element.
+                                    </audio>
+                                {% endif %}
                             </div>
                         {% endfor %}
                     </div>

@@ -31,7 +31,6 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'ai_init',
     'channels',
     'directs',
     'main.apps.MainConfig',
@@ -128,14 +127,14 @@ STATIC_URL = 'static/'
 STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
-CKEDITOR_UPLOAD_PATH = "uploads/"
+CKEDITOR_UPLOAD_PATH = "staic/uploads/"
 CKEDITOR_IMAGE_BACKEND = "pillow"
 MEDIA_URL = '/media/'
 MEDIA_ROOT = '/media/'
 CKEDITOR_CONFIGS = {
     'default': {
         'height':'400px',
-        'width':'1000px',
+        'width':'500px',
         'image_width':'100px',
     }
 }

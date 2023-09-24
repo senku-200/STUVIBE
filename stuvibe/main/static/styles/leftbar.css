@@ -146,19 +146,6 @@ body{
     display: block;
 }
 
-.leftsidebar_profile_img{
-    width: 20px;
-    height: 20px;
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 100%;
-}
-.leftsidebar_profile_img img{
-    width: 100%;
-    height: auto;
-}
 /* .profile_photo_2{
     width: 20px;
     height: 20px;
@@ -299,3 +286,6 @@ body{
 .leftsidebar_1::-webkit-scrollbar{
     display: none;
 } 
+.leftsidebar{
+    position: fixed;
+}
