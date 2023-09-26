@@ -30,12 +30,12 @@ body{
 }
 .home_rtn{
     cursor: pointer;
+    z-index: 1000;
 }
 .cancel_cmt_section{
     position: absolute;
     top: 20px;
     right: 60px;
-    cursor: pointer;
 }
 .cancel_cmt_section svg{
     width: 20px;
@@ -273,7 +273,15 @@ body{
     padding-left: 32px;
     padding-top: 10px;
 }
+.cmt_section_4 form{
+    width: 100%;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+}
 .cmt_section_4 input{
+    width: 100%;
     background-color: transparent;
     border: none;
     outline: none;
@@ -285,6 +293,19 @@ body{
     line-height: 150%; /* 22.5px */
     padding-bottom: 5px;
     padding-left: 5px
+}
+.cmt_section_4 form button{
+    background-color: dodgerblue;
+    border-radius: 20px;
+    width: 90px;
+    height: 40px;
+    color: white;
+    border: none;
+    outline: none;
+    z-index: 500;
+    position: relative;
+    top: -5px;
+    cursor: pointer;
 }
 .cmt_post_comments{
     color: white;
