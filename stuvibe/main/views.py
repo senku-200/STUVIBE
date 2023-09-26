@@ -15,6 +15,20 @@ def profile(request,pk):
     user = models.User.objects.get(id = pk)
     post = models.Post.objects.filter(post_details__host = user)
     details = models.PostDetails.objects.filter(host = user)
+
+    if request.method == 'POST':
+        is_following = False
+        if request.user in user.followers.all():
+            user.followers.remove(request.user)
+            request.user.following.remove(user)
+        else:
+            user.followers.add(request.user)
+            request.user.following.add(user)
+            is_following = True
+        return JsonResponse({'is_following':is_following,
+                             'follower_count':user.followers.count(),
+                             'request.user.following':request.user.following.count(),   
+                             })
     context = {
         'user':user,
         'leftsidebar':'lite',
@@ -25,8 +39,10 @@ def profile(request,pk):
 
 @login_required(login_url='login')
 def home(request):
-    
-    post = models.PostDetails.objects.all()
+    user = request.user
+    following_users = user.following.all()
+    # post = models.PostDetails.objects.all()
+    post = models.PostDetails.objects.filter(host__in = following_users)
     comments = models.Comment.objects.all()
     stories = models.Stories.objects.all()
     context = {
@@ -58,6 +74,8 @@ def home(request):
             like.save()
     
     return render(request,"home.html",context)
+
+
 
 
 def signup(request):
@@ -277,6 +295,16 @@ from .models import User
 from django.db.models import Q
 from django.core.paginator import Paginator
 from django.db.models import Q
+
+def display_posts(requeset,pk):
+    post_details = models.PostDetails.objects.get(id=pk)
+    print(post_details)
+    context = {
+        'post_details' : post_details,
+        'leftsidebar':'lite',
+    }
+    return render(requeset,'post_display.html',context)
+
 def search_posts(request):
     post_details = models.PostDetails.objects.all()
     q = request.GET.get('q') if request.GET.get('q') != None else None

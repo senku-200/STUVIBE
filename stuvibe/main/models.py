@@ -25,13 +25,14 @@ class User(AbstractUser):
     created = models.DateTimeField(auto_now=True)
     updated = models.DateTimeField(auto_now_add=True)
     followers = models.ManyToManyField('self',blank=True)
+    following = models.ManyToManyField('self',blank=True)
     USERNAME_FIELD = 'username'
     REQUIRED_FIELDS = []
     def __str__(self):
         return self.username
     
 class PostDetails(models.Model):
-    host = models.ForeignKey(User,on_delete=models.CASCADE)
+    host = models.ForeignKey(User,on_delete=models.CASCADE,related_name='host')
     title = models.CharField(max_length=100)
     template = models.ImageField(upload_to='./static/data/post_templates',null=True,blank=True)
     content = models.TextField(blank=True,null=True)

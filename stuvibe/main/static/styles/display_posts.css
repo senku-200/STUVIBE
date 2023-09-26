@@ -1,0 +1,59 @@
+.main_post{
+    width: calc(100% - 100px);
+    position: relative;
+    left: 100px;
+    top: 0px;
+}
+.post-container{
+    width: 100%;
+    height: 100vh;
+    padding: 10px 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+.image-container{
+    position: relative;
+    width: 80%;
+    height: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    object-fit: cover;
+}
+img,video{
+    width: 100%;
+    height: auto;
+}
+button{
+    background-color:transparent;
+    border: none;
+    outline: none;
+}
+.prev-button,.next-button{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    margin: 0px 10px;
+    transition: .10s ease-in;
+}
+.prev-button{
+    display: none;
+    left: 10px;
+}
+.next-button{
+    display: none;
+    right: 10px;
+}
+.prev-button.activate,.next-button.activate{
+    display: block;
+    transition: .5s;
+}
+.cancel_cmt_section{
+    position: absolute;
+    top: 50px;
+    right: 50px;
+    cursor: pointer;
+    z-index: 500;
+}

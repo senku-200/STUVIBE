@@ -1,0 +1,94 @@
+{% extends 'main.html' %}
+{% load custom_filters %}
+{% block content %}
+
+<link rel="stylesheet" href="../static/styles/display_posts.css?{% now 'U' %}">
+<div class="cancel_cmt_section">
+    <a href="javascript:history.go(-1)" class="rtn" >
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M20 1.84176L18.1582 0L10 8.17121L1.84176 0L0 1.84176L8.17121 10L0 18.1582L1.84176 20L10 11.8288L18.1582 20L20 18.1582L11.8288 10L20 1.84176Z" fill="white"/>
+        </svg>
+    </a>
+</div>
+
+    <div class="main_post">
+        <div class="post-container">                
+            <div class="image-container">
+                {% for post_src in post_details.post_details.all %}
+                    {% if post_src.post.file.name|lower|endswith:'.jpg' or post_src.post.file.name|lower|endswith:'.jpeg' or post_src.post.file.name|lower|endswith:'.png' or post_src.post.file.name|lower|endswith:'.gif' %}
+                    <img src="{{ post_src.post.url }}" alt="Post Image">
+                    {% elif post_src.post.file.name|lower|endswith:'.mp4' or post_src.post.file.name|lower|endswith:'.avi' %}
+                        <video controls>
+                            <source src="{{ post_src.post.url }}" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    {% elif post.post.file.name|lower|endswith:'.mp3' %}
+                        <audio controls>
+                            <source src="{{ post_src.post.url }}" type="audio/mpeg">
+                            Your browser does not support the audio element.
+                        </audio>
+                    {% endif %}
+                {% endfor %}
+                <button class="prev-button" type="button">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="44" viewBox="0 0 26 44" fill="none">
+                        <path d="M24 2L4 22L24 42" stroke="white" stroke-width="5"/>
+                    </svg>
+                </button>
+                <button class="next-button" type="button">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="44" viewBox="0 0 26 44" fill="none">
+                        <path d="M2 42L22 22L2 2" stroke="white" stroke-width="5"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $(".post-container").each(function() {
+            var imageContainer = $(this).find(".image-container");
+            var images = $(this).find('img, video, audio');
+            console.log(images)
+            var currentIndex = 0;
+
+            function updateImage() {
+                images.hide();
+                images.eq(currentIndex).show();
+            }
+
+            updateImage();
+
+            $(this).find(".prev-button").click(function() {
+                if (currentIndex > 0) {
+                    currentIndex--;
+                    updateImage();
+                }
+            });
+
+            $(this).find(".next-button").click(function() {
+                if (currentIndex < images.length - 1) {
+                    currentIndex++;
+                    updateImage();
+                }
+            });
+        });
+    });
+</script>
+<script>
+    let container = document.querySelectorAll('.image-container')
+    let prev = document.querySelector('.prev-button')
+    let nxt = document.querySelector('.next-button')
+    container.forEach(element => {
+        element.addEventListener('mouseover',()=>{
+            prev.classList.add('activate')
+            nxt.classList.add('activate')
+        })
+        element.addEventListener('mouseout',()=>{
+            prev.classList.remove('activate')
+            nxt.classList.remove('activate')
+        })
+    });
+</script>
+
+{% endblock content %}

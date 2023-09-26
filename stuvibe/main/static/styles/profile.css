@@ -68,7 +68,7 @@ main{
 .main_profile_details{
     display: inline-flex;
     align-items: flex-start;
-    gap: 226px;
+    gap: 200px;
     position: relative;
     left: 203px;
     top: 12px;
@@ -109,13 +109,9 @@ main{
 .profile_features{
     display: flex;
     align-items: center;
-    gap: 30px;
+    gap: 20px;
 }
-.profile_features{
-    display: flex;
-    align-items: center;
-    gap: 30px;
-}
+
 .profile_post_area{
     display: inline-flex;
     flex-direction: column;
@@ -350,4 +346,10 @@ aside{
     height: auto;
     padding: 0px 20px 20px 0px;
 
+}
+
+button[type = 'submit']{
+    background-color: transparent;
+    outline: none;
+    border: none;
 }

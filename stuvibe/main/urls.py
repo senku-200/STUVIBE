@@ -25,6 +25,7 @@ urlpatterns = [
     path('projects/<str:pk>', views.projects, name="projects"),
     path('search_users', views.search_users, name="search_users"),
     path('search_posts', views.search_posts, name="search_posts"),
+    path('display_posts/<str:pk>', views.display_posts, name="display_posts"),
 ]
     
 

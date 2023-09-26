@@ -1,6 +1,8 @@
 {% extends 'main.html' %}
 {% load custom_filters %}
 {% block content %} 
+
+
 <link rel="stylesheet" href="../static/styles/search_user.css?{% now 'U' %}">
 <header>
     <div class="header_left">
@@ -28,6 +30,7 @@
 <main>
     <div class="main">
         {% for user in users %}
+        
         <a href="{% url 'profile' user.id %}">
             <div class="portfolio_con">
                 <div class="project_cover">
@@ -64,7 +67,7 @@
                     <div class="counts">
                         <div class="count_con">
                             <div class="count post_count_con">
-                                <p class="count_text">0</p>
+                                <p class="count_text">{{user.host.count}}</p>
                                 <p>posts</p>
                             </div>
                             <div class="count followers_count_con">
@@ -72,7 +75,7 @@
                                 <p>Followers</p>
                             </div>
                             <div class="count following_count_con">
-                                <p class="count_text">0</p>
+                                <p class="count_text">{{user.following.count}}</p>
                                 <p>Following</p>
                             </div>
                         </div>

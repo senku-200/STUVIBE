@@ -34,21 +34,23 @@
                             <div class="main_post">
                                 <div class="post-container">                
                                     <div class="image-container">
-                                        {% for post_src in post.post_details.all %}
-                                            {% if post_src.post.file.name|lower|endswith:'.jpg' or post_src.post.file.name|lower|endswith:'.jpeg' or post_src.post.file.name|lower|endswith:'.png' or post_src.post.file.name|lower|endswith:'.gif' %}
-                                            <img src="{{ post_src.post.url }}" alt="Post Image">
-                                            {% elif post_src.post.file.name|lower|endswith:'.mp4' or post_src.post.file.name|lower|endswith:'.avi' %}
-                                                <video controls>
-                                                    <source src="{{ post_src.post.url }}" type="video/mp4">
-                                                    Your browser does not support the video tag.
-                                                </video>
-                                            {% elif post.post.file.name|lower|endswith:'.mp3' %}
-                                                <audio controls>
-                                                    <source src="{{ post_src.post.url }}" type="audio/mpeg">
-                                                    Your browser does not support the audio element.
-                                                </audio>
-                                            {% endif %}
-                                        {% endfor %}
+                                        <a href="{% url 'display_posts' post.id %}">
+                                            {% for post_src in post.post_details.all %}
+                                                {% if post_src.post.file.name|lower|endswith:'.jpg' or post_src.post.file.name|lower|endswith:'.jpeg' or post_src.post.file.name|lower|endswith:'.png' or post_src.post.file.name|lower|endswith:'.gif' %}
+                                                <img src="{{ post_src.post.url }}" alt="Post Image">
+                                                {% elif post_src.post.file.name|lower|endswith:'.mp4' or post_src.post.file.name|lower|endswith:'.avi' %}
+                                                    <video controls>
+                                                        <source src="{{ post_src.post.url }}" type="video/mp4">
+                                                        Your browser does not support the video tag.
+                                                    </video>
+                                                {% elif post.post.file.name|lower|endswith:'.mp3' %}
+                                                    <audio controls>
+                                                        <source src="{{ post_src.post.url }}" type="audio/mpeg">
+                                                        Your browser does not support the audio element.
+                                                    </audio>
+                                                {% endif %}
+                                            {% endfor %}
+                                        </a>
                                         <button class="prev-button" type="button">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="26" height="44" viewBox="0 0 26 44" fill="none">
                                                 <path d="M24 2L4 22L24 42" stroke="white" stroke-width="5"/>
@@ -64,12 +66,13 @@
                             </div>
                         </div>
                         <div class="project_details_con">
+                            <a href="{% url 'profile' post.host.id %}">
                             <div class="project_host">
                                 <div class="project_host_profile">
                                     <img src="media/{{portfolio.portfolio.portfolio_user.profile_photo}}" alt="" srcset="">
                                 </div>
                                 <p>{{post.host.username}}</p>
-                            </div>
+                            </div></a>
                             <div class="project_details">
                                 <div class="prj_likes">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="12" height="14" viewBox="0 0 12 14" fill="none">
