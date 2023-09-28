@@ -1,7 +1,7 @@
 {% extends 'main.html' %}
 {% load custom_filters %}
 {% block content %} 
-<link rel="stylesheet" href="../static/styles/portfolio.css?{% now 'U' %}">
+<link rel="stylesheet" href="../static/styles/search_posts.css?{% now 'U' %}">
 <header>
     <div class="header_left">
         <p class="title">stuvuibe</p>
@@ -36,7 +36,7 @@
                                     <div class="image-container">
                                         <a href="{% url 'display_posts' post.id %}">
                                             {% for post_src in post.post_details.all %}
-                                                {% if post_src.post.file.name|lower|endswith:'.jpg' or post_src.post.file.name|lower|endswith:'.jpeg' or post_src.post.file.name|lower|endswith:'.png' or post_src.post.file.name|lower|endswith:'.gif' %}
+                                                {% if post_src.post.file.name|lower|endswith:'.jpg' or post_src.post.file.name|lower|endswith:'.jpeg' or post_src.post.file.name|lower|endswith:'.png' or post_src.post.file.name|lower|endswith:'.gif' or post_src.post.file.name|lower|endswith:'.jfif' %}
                                                 <img src="{{ post_src.post.url }}" alt="Post Image">
                                                 {% elif post_src.post.file.name|lower|endswith:'.mp4' or post_src.post.file.name|lower|endswith:'.avi' %}
                                                     <video controls>
@@ -69,7 +69,7 @@
                             <a href="{% url 'profile' post.host.id %}">
                             <div class="project_host">
                                 <div class="project_host_profile">
-                                    <img src="media/{{portfolio.portfolio.portfolio_user.profile_photo}}" alt="" srcset="">
+                                    <img src="{{post.host.profile_photo.url}}" alt="" srcset="">
                                 </div>
                                 <p>{{post.host.username}}</p>
                             </div></a>
@@ -94,13 +94,13 @@
     {% endif %}
     <!-- <div class="project_host">
         <div class="project_host_profile">
-            <img src="media/{{post.host.profile_photo}}" alt="" srcset="">
+            <img src="{{post.host.profile_photo.url}}" alt="" srcset="">
         </div>
     </div>
         <div class="container">
             <div class="project_host_">
                 <div class="project_host_profile_photo">
-                    <img src="/media/{{project.portfolio.portfolio_user.profile_photo}}" alt="{{project.portfolio.portfolio_user.profile_photo}}">
+                    <img src="{{project.portfolio.portfolio_user.profile_photo.url}}" alt="{{project.portfolio.portfolio_user.profile_photo}}">
                 </div>
                 <p>{{project.portfolio.portfolio_user}}</p>
             </div>

@@ -15,7 +15,7 @@
         <div class="post-container">                
             <div class="image-container">
                 {% for post_src in post_details.post_details.all %}
-                    {% if post_src.post.file.name|lower|endswith:'.jpg' or post_src.post.file.name|lower|endswith:'.jpeg' or post_src.post.file.name|lower|endswith:'.png' or post_src.post.file.name|lower|endswith:'.gif' %}
+                    {% if post_src.post.file.name|lower|endswith:'.jpg' or post_src.post.file.name|lower|endswith:'.jpeg' or post_src.post.file.name|lower|endswith:'.png' or post_src.post.file.name|lower|endswith:'.jfif' or post_src.post.file.name|lower|endswith:'.gif' %}
                     <img src="{{ post_src.post.url }}" alt="Post Image">
                     {% elif post_src.post.file.name|lower|endswith:'.mp4' or post_src.post.file.name|lower|endswith:'.avi' %}
                         <video controls>

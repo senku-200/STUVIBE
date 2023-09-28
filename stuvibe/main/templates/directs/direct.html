@@ -25,7 +25,7 @@
 					<a href="{% url 'directs' username=message.username %}">
 						<div class="msg_user">
 							<div class="msg_user_profile">
-								<img src="/media/{{message.profile_photo}}" alt="" srcset="">
+								<img src="{{message.profile_photo.url}}" alt="" srcset="">
 							</div>
 							<div class="msg_user_details">
 								<p class="msg_username">{{message.username}}</p>
@@ -42,7 +42,7 @@
 				<div class="msg_header_con">
 					<a href="{% url 'profile' active_direct.id %}">
 						<div class="msg_header_con_profile">
-							<img src="/media/{{active_direct.profile_photo}}" alt="" srcset="">
+							<img src="{{active_direct.profile_photo.url}}" alt="" srcset="">
 						</div>
 					</a>
 					<a href="{% url 'profile' active_direct.id %}">

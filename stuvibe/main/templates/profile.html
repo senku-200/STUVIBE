@@ -18,12 +18,12 @@
         <div class="profile_container">
             <div class="profile_header">
                 <div class="profile_banner">
-                    <img src="/media/{{user.profile_banner}}" alt="{{user.profile_banner}}">
+                    <img src="{{user.profile_banner.url}}" alt="{{user.profile_banner}}">
                 </div>
             </div>
             <div class="prfoile_main_img_details_con">
                 <div class="profile_img">
-                    <img src="/media/{{user.profile_photo}}" alt="">
+                    <img src="{{user.profile_photo.url}}" alt="">
                 </div>
                 <div class="main_profile_details">
                     <div class="primary_details">
@@ -148,7 +148,7 @@
                         {% for post_src in post %}
                         <a href="{% url 'display_posts' post_src.post_details.id %}">
                             <div class="post_con">
-                                {% if post_src.post.file.name|lower|endswith:'.jpg' or post_src.post.file.name|lower|endswith:'.jpeg' or post_src.post.file.name|lower|endswith:'.png' or post_src.post.file.name|lower|endswith:'.gif' %}
+                                {% if post_src.post.file.name|lower|endswith:'.jpg' or post_src.post.file.name|lower|endswith:'.jpeg' or post_src.post.file.name|lower|endswith:'.png' or post_src.post.file.name|lower|endswith:'.gif' or post_src.post.file.name|lower|endswith:'.jfif' %}
                                 <img src="{{ post_src.post.url }}" alt="Post Image">
                                 {% elif post_src.post.file.name|lower|endswith:'.mp4' or post_src.post.file.name|lower|endswith:'.avi' %}
                                     <video controls width="300">

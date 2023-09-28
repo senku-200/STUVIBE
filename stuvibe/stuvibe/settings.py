@@ -25,13 +25,12 @@ SECRET_KEY = 'django-insecure-e8kf*r3ah-0+cy!s4esz(&+t$51$zsi=hf5z@ih&(0192(d0r4
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1','192.168.52.143']
 
 
 # Application definition
 
 INSTALLED_APPS = [
-    'channels',
     'directs',
     'main.apps.MainConfig',
     'django.contrib.admin',
@@ -123,19 +122,28 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = 'static/'
-STATICFILES_DIRS = [
-    BASE_DIR / "static",
-]
-CKEDITOR_UPLOAD_PATH = "staic/uploads/"
-CKEDITOR_IMAGE_BACKEND = "pillow"
+# STATIC_URL = 'static/'
+# # print(BASE_DIR)
+# import os
+# STATICFILES_DIRS = [
+#     BASE_DIR / "static",
+# ]
+
+import os
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+
 MEDIA_URL = '/media/'
-MEDIA_ROOT = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+CKEDITOR_UPLOAD_PATH = f"{{STATICFILES_DIRS}}/ckeditor"
+CKEDITOR_IMAGE_BACKEND = "pillow"
+# MEDIA_URL = '/media/'
+# MEDIA_ROOT = '/media/'
 CKEDITOR_CONFIGS = {
     'default': {
         'height':'400px',
         'width':'500px',
-        'image_width':'100px',
     }
 }
 

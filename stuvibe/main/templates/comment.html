@@ -26,7 +26,7 @@
                     <div class="post-container">                            
                         <div class="image-container">
                             {% for post_src in post.post_details.all %}
-                                {% if post_src.post.file.name|lower|endswith:'.jpg' or post_src.post.file.name|lower|endswith:'.jpeg' or post_src.post.file.name|lower|endswith:'.png' or post_src.post.file.name|lower|endswith:'.gif' %}
+                                {% if post_src.post.file.name|lower|endswith:'.jpg' or post_src.post.file.name|lower|endswith:'.jpeg' or post_src.post.file.name|lower|endswith:'.png' or post_src.post.file.name|lower|endswith:'.gif' or post_src.post.file.name|lower|endswith:'.jfif' %}
                                 <img src="{{ post_src.post.url }}" alt="Post Image">
                                 {% elif post_src.post.file.name|lower|endswith:'.mp4' or post_src.post.file.name|lower|endswith:'.avi' %}
                                     <video controls width="300">
@@ -58,7 +58,7 @@
                 <div class="cmt_section_1">
                     <div class="cmt_section_1_profile">
                         <div class="cmt_user_profile">
-                            <img src="/media/{{post.host.profile_photo}}" alt="user_profile_img">
+                            <img src="{{post.host.profile_photo.url}}" alt="user_profile_img">
                         </div>
                         <p class="cmt_user_name">{{post.host}}</p>
                     </div>
@@ -71,7 +71,7 @@
                 <div class="cmt_section_2">
                     <div class="post_cmt_host_deatails">
                         <div class="post_cmt_host_profile_img">
-                            <img src="/media/{{post.host.profile_photo}}" alt="user_profile_img">
+                            <img src="{{post.host.profile_photo.url}}" alt="user_profile_img">
                         </div>
                         <p class="post_cmt_host_profile_name">{{post.host}}</p>
                         
@@ -79,9 +79,9 @@
                     </div>
                     <div class="cmt_post_details_wrapper">
                         <div class="cmt_post_details">
-                            <p class="cmt_post_title">{{post}}</p>
+                            <p class="cmt_post_title"><h3>{{post}}</h3></p>
                             <p class="cmt_post_content">{{post.content}}</p>
-                            <p class="cmt_post_tags">{{post.tags}}</p>
+                            <p class="cmt_post_tags" style="color: dodgerblue;">{{post.tags}}</p>
                         </div>
                     </div>
                     <div class="cmt_post_comments">
@@ -89,7 +89,7 @@
                             <div class="comments_content_con">
                                 <div class="comment_host_details">
                                     <div class="post_cmt_host_profile_img">
-                                        <img src="/media/{{comment.user.profile_photo}}" alt="user_profile_img" style="color: white;">
+                                        <img src="{{comment.user.profile_photo.url}}" alt="user_profile_img" style="color: white;">
                                     </div>
                                     <p class="post_cmt_host_profile_name">{{comment.user}}</p>
                                     <div class="comment_details">

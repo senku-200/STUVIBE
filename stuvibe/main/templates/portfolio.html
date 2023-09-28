@@ -34,12 +34,12 @@
                 <a href="{% url 'projects' portfolio.id %}">
                     <div class="portfolio_con">
                         <div class="project_cover">
-                            <img src="media/{{portfolio.project_cover}}" alt="">
+                            <img src="{{portfolio.project_cover.url}}" alt="">
                         </div>
                         <div class="project_details_con">
                             <div class="project_host">
                                 <div class="project_host_profile">
-                                    <img src="media/{{portfolio.portfolio.portfolio_user.profile_photo}}" alt="" srcset="">
+                                    <img src="{{portfolio.portfolio.portfolio_user.profile_photo.url}}" alt="" srcset="">
                                 </div>
                                 <p>{{portfolio.portfolio.portfolio_user}}</p>
                             </div>
@@ -63,15 +63,11 @@
             {% endfor %}
         </div>
     {% else %}
-    <div class="project_host">
-        <div class="project_host_profile">
-            <img src="media/{{project.portfolio.portfolio_user.profile_photo}}" alt="" srcset="">
-        </div>
-    </div>
+    
         <div class="container">
             <div class="project_host_">
                 <div class="project_host_profile_photo">
-                    <img src="/media/{{project.portfolio.portfolio_user.profile_photo}}" alt="{{project.portfolio.portfolio_user.profile_photo}}">
+                    <img src="{{project.portfolio.portfolio_user.profile_photo.url}}" alt="{{project.portfolio.portfolio_user.profile_photo}}">
                 </div>
                 <p>{{project.portfolio.portfolio_user}}</p>
             </div>
