@@ -4,6 +4,15 @@
 
 
 <link rel="stylesheet" href="../static/styles/search_user.css?{% now 'U' %}">
+<div class="leftsidebar_expander">
+    <svg  class="leftsidebar_expander_svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 26 21" fill="none"><path d="M1 1H25M1 10.5H25M1 20H25" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+</div>
+<div class="leftsidebar_collapser">
+    <svg class="leftsidebar_collapser_svg" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+        <path d="M1.56322 0.266174L10 8.70318L18.4368 0.266174C18.7644 -0.0614248 19.2799 -0.0866233 19.6364 0.190576L19.7338 0.278023C20.0887 0.632922 20.0887 1.20833 19.7338 1.56323L11.2968 10L19.7338 18.4368C20.0614 18.7644 20.0866 19.2799 19.8094 19.6364L19.722 19.7338C19.3671 20.0887 18.7917 20.0887 18.4368 19.7338L10 11.2968L1.56322 19.7338C1.23562 20.0614 0.720135 20.0866 0.363631 19.8094L0.266175 19.722C-0.088724 19.3671 -0.088724 18.7917 0.266175 18.4368L8.70318 10L0.266175 1.56323C-0.0614235 1.23563 -0.0866256 0.720142 0.190573 0.363637L0.278045 0.266174C0.632944 -0.0887247 1.20832 -0.0887247 1.56322 0.266174ZM0.908762 0.920625L9.98841 10L0.908762 19.0794L0.920632 19.0912L10 10.0116L19.0794 19.0912L19.0912 19.0794L10.0116 10L19.0912 0.920625L19.0794 0.908776L10 9.9884L0.920632 0.908776L0.908762 0.920625Z" fill="white"/>
+      </svg>
+</div>
 <header>
     <div class="header_left">
         <p class="title">stuvuibe</p>
@@ -29,63 +38,77 @@
 </header>
 <main>
     <div class="main">
-        {% for user in users %}
-        
-        <a href="{% url 'profile' user.id %}">
-            <div class="portfolio_con">
-                <div class="project_cover">
-                    <div class="user_banner">
-                        <img src="{{user.profile_banner.url}}" alt="banner" srcset="">
-                    </div>
-                    <div class="user_image">
-                        <img src="{{user.profile_photo.url}}" alt="profile_photo" srcset="">
-                    </div>
-                    <div class="profile_name">
-                        <p>{{user.username}}</p>
-                    </div>
-                    <div class="education">
-                        <div class="edu_svg">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="17" viewBox="0 0 15 17" fill="none">
-                                <path d="M13.8093 9.87116V7.15246H13.5238C12.3147 7.15272 11.2383 7.37312 10.3505 7.65684C10.1765 7.28601 9.97553 6.90316 9.80333 6.58814C10.5666 5.90184 11.0512 4.88155 11.0512 3.74167C11.0512 1.67507 9.4612 0 7.50005 0C5.53887 0 3.94885 1.67507 3.94885 3.74167C3.94885 4.88158 4.43348 5.90188 5.19676 6.58814C5.02456 6.90316 4.82358 7.28601 4.64954 7.65684C3.76181 7.37312 2.6854 7.15269 1.47654 7.15246H1.19105V9.87116C0.32932 9.88898 0 10.6376 0 11.559C0 12.4804 0.32932 13.229 1.19105 13.2466V15.4106L1.46648 15.4208L1.47449 15.421C1.56014 15.4246 2.34556 15.46 3.4094 15.6101C4.473 15.7598 5.81567 16.0257 7.00807 16.482L7.05535 16.5H7.94468L7.99196 16.482C9.22299 16.0108 10.6138 15.743 11.693 15.5959C12.2324 15.5223 12.6942 15.4783 13.0204 15.453C13.1834 15.4402 13.3122 15.432 13.4004 15.4272C13.4443 15.4248 13.478 15.4231 13.5004 15.4221C13.5118 15.4217 13.5201 15.4212 13.5255 15.421L13.5338 15.4207L13.8092 15.4106V13.2465C14.6707 13.229 15 12.4804 15 11.559C15 10.6375 14.6707 9.88898 13.8093 9.87116ZM6.72762 15.7468C5.56856 15.3584 4.35127 15.1325 3.38062 14.9996C2.66484 14.9017 2.08383 14.8553 1.76179 14.8348V13.1489C2.38119 12.9155 2.8245 12.292 2.8245 11.559C2.8245 10.826 2.38119 10.2025 1.76179 9.9689V7.75842C3.24882 7.8034 4.51637 8.19325 5.42628 8.58355C5.90978 8.79096 6.29208 8.99817 6.55175 9.15267C6.61892 9.19237 6.67737 9.22846 6.72762 9.26046V15.7468ZM7.89194 15.8818C7.87665 15.8873 7.86136 15.8929 7.84607 15.8986H7.15406C7.13873 15.8929 7.12344 15.8873 7.10815 15.8818V9.45753H7.89194V15.8818ZM13.2383 9.96887C12.6189 10.2025 12.1758 10.826 12.1758 11.559C12.1758 12.292 12.6189 12.9155 13.2383 13.1489V14.8348C12.9162 14.8552 12.3352 14.9017 11.6195 14.9996C10.6488 15.1324 9.43174 15.3584 8.27247 15.7468V9.26043C8.5207 9.1033 8.97589 8.83836 9.59666 8.57388C10.5047 8.18671 11.7638 7.80289 13.2383 7.75835L13.2383 9.96887Z" fill="white"/>
-                              </svg>
+        {% for user in users %}   
+            <a href="{% url 'profile' user.id %}">
+                <div class="portfolio_con">
+                    <div class="project_cover">
+                        <div class="user_banner">
+                            <img src="{{user.profile_banner.url}}" alt="banner" srcset="">
                         </div>
-                        <div class="edu_text">
-                            <p>{{user.degree}},</p><p>{{user.branch}}</p>
+                        <div class="user_image">
+                            <img src="{{user.profile_photo.url}}" alt="profile_photo" srcset="">
                         </div>
-                    </div>
-                    <div class="location">
-                        <div class="loc_svg">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="15" viewBox="0 0 12 15" fill="none">
-                                <path d="M5.83333 15C8.75 12 11.6667 9.31367 11.6667 6C11.6667 2.68629 9.055 0 5.83333 0C2.61167 0 0 2.68629 0 6C0 9.31367 2.91667 12 5.83333 15Z" fill="white"/>
-                                <path d="M5.83268 7.49999C6.75318 7.49999 7.49935 6.75382 7.49935 5.83332C7.49935 4.91285 6.75318 4.16666 5.83268 4.16666C4.91218 4.16666 4.16602 4.91285 4.16602 5.83332C4.16602 6.75382 4.91218 7.49999 5.83268 7.49999Z" fill="black"/>
-                            </svg>
+                        <div class="profile_name">
+                            <p>{{user.username}}</p>
                         </div>
-                        <div class="loc_text">
-                            <p>{{user.district}},</p><p>{{user.state}},</p><p>{{user.country}}</p>
-                        </div>
-                    </div>
-                    <div class="counts">
-                        <div class="count_con">
-                            <div class="count post_count_con">
-                                <p class="count_text">{{user.host.count}}</p>
-                                <p>posts</p>
+                        <div class="education">
+                            <div class="edu_svg">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="17" viewBox="0 0 15 17" fill="none">
+                                    <path d="M13.8093 9.87116V7.15246H13.5238C12.3147 7.15272 11.2383 7.37312 10.3505 7.65684C10.1765 7.28601 9.97553 6.90316 9.80333 6.58814C10.5666 5.90184 11.0512 4.88155 11.0512 3.74167C11.0512 1.67507 9.4612 0 7.50005 0C5.53887 0 3.94885 1.67507 3.94885 3.74167C3.94885 4.88158 4.43348 5.90188 5.19676 6.58814C5.02456 6.90316 4.82358 7.28601 4.64954 7.65684C3.76181 7.37312 2.6854 7.15269 1.47654 7.15246H1.19105V9.87116C0.32932 9.88898 0 10.6376 0 11.559C0 12.4804 0.32932 13.229 1.19105 13.2466V15.4106L1.46648 15.4208L1.47449 15.421C1.56014 15.4246 2.34556 15.46 3.4094 15.6101C4.473 15.7598 5.81567 16.0257 7.00807 16.482L7.05535 16.5H7.94468L7.99196 16.482C9.22299 16.0108 10.6138 15.743 11.693 15.5959C12.2324 15.5223 12.6942 15.4783 13.0204 15.453C13.1834 15.4402 13.3122 15.432 13.4004 15.4272C13.4443 15.4248 13.478 15.4231 13.5004 15.4221C13.5118 15.4217 13.5201 15.4212 13.5255 15.421L13.5338 15.4207L13.8092 15.4106V13.2465C14.6707 13.229 15 12.4804 15 11.559C15 10.6375 14.6707 9.88898 13.8093 9.87116ZM6.72762 15.7468C5.56856 15.3584 4.35127 15.1325 3.38062 14.9996C2.66484 14.9017 2.08383 14.8553 1.76179 14.8348V13.1489C2.38119 12.9155 2.8245 12.292 2.8245 11.559C2.8245 10.826 2.38119 10.2025 1.76179 9.9689V7.75842C3.24882 7.8034 4.51637 8.19325 5.42628 8.58355C5.90978 8.79096 6.29208 8.99817 6.55175 9.15267C6.61892 9.19237 6.67737 9.22846 6.72762 9.26046V15.7468ZM7.89194 15.8818C7.87665 15.8873 7.86136 15.8929 7.84607 15.8986H7.15406C7.13873 15.8929 7.12344 15.8873 7.10815 15.8818V9.45753H7.89194V15.8818ZM13.2383 9.96887C12.6189 10.2025 12.1758 10.826 12.1758 11.559C12.1758 12.292 12.6189 12.9155 13.2383 13.1489V14.8348C12.9162 14.8552 12.3352 14.9017 11.6195 14.9996C10.6488 15.1324 9.43174 15.3584 8.27247 15.7468V9.26043C8.5207 9.1033 8.97589 8.83836 9.59666 8.57388C10.5047 8.18671 11.7638 7.80289 13.2383 7.75835L13.2383 9.96887Z" fill="white"/>
+                                </svg>
                             </div>
-                            <div class="count followers_count_con">
-                                <p class="count_text">{{user.followers.count}}</p>
-                                <p>Followers</p>
-                            </div>
-                            <div class="count following_count_con">
-                                <p class="count_text">{{user.following.count}}</p>
-                                <p>Following</p>
+                            <div class="edu_text">
+                                <p>{{user.degree}},</p><p>{{user.branch}}</p>
                             </div>
                         </div>
-                        <div class="vertical_line line1"></div>
-                        <div class="vertical_line line2"></div>
+                        <div class="location">
+                            <div class="loc_svg">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="15" viewBox="0 0 12 15" fill="none">
+                                    <path d="M5.83333 15C8.75 12 11.6667 9.31367 11.6667 6C11.6667 2.68629 9.055 0 5.83333 0C2.61167 0 0 2.68629 0 6C0 9.31367 2.91667 12 5.83333 15Z" fill="white"/>
+                                    <path d="M5.83268 7.49999C6.75318 7.49999 7.49935 6.75382 7.49935 5.83332C7.49935 4.91285 6.75318 4.16666 5.83268 4.16666C4.91218 4.16666 4.16602 4.91285 4.16602 5.83332C4.16602 6.75382 4.91218 7.49999 5.83268 7.49999Z" fill="black"/>
+                                </svg>
+                            </div>
+                            <div class="loc_text">
+                                <p>{{user.district}},</p><p>{{user.state}},</p><p>{{user.country}}</p>
+                            </div>
+                        </div>
+                        <div class="counts">
+                            <div class="count_con">
+                                <div class="count post_count_con">
+                                    <p class="count_text">{{user.host.count}}</p><p>posts</p>
+                                </div>
+                                <div class="count followers_count_con">
+                                    <p class="count_text">{{user.followers.count}}</p><p>Followers</p>
+                                </div>
+                                <div class="count following_count_con">
+                                    <p class="count_text">{{user.following.count}}</p>
+                                    <p>Following</p>
+                                </div>
+                            </div>
+                            <div class="vertical_line line1"></div>
+                            <div class="vertical_line line2"></div>
+                        </div>
                     </div>
                 </div>
-            </div></a>
+            </a>
         {% endfor %}
     </div>
+    <script>
+        let expander = document.querySelector('.leftsidebar_expander_svg')
+        let collapser = document.querySelector('.leftsidebar_collapser_svg')
+        let collapser_con = document.querySelector('.leftsidebar_collapser')
+        let leftsidebar = document.querySelector('.leftsidebar')
+        expander.addEventListener('click',()=>{
+            leftsidebar.classList.add('activate');
+            collapser_con.classList.add('activate');
+        })
+        collapser.addEventListener('click',()=>{
+            leftsidebar.classList.remove('activate');
+            collapser_con.classList.remove('activate');
+    
+        })
+    </script>
 </main>
+
 
 {% endblock content %}

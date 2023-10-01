@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Abel&family=Fasthand&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Abel&family=Fasthand&family=Poppins&display=swap');
 :root{
+
     --fasthand-font:'Fasthand', cursive;
     --poppins-font:'Poppins', sans-serif;
     --silver:silver;
@@ -18,57 +19,20 @@
     box-sizing: border-box;
 }
 
-body{
-    width: auto;
+ body{
+    width: 100%;
     height: auto;
     flex-shrink: 0;
     background: var(--black);
-}
+}/*
 .sidebar_container{
     position: fixed;
     scroll-behavior: smooth;
     width: auto;
-}
-
-.leftsidebar_1{
-    display: block;
-    position: absolute;
-    width: 100px;
-    height: auto;
-    flex-shrink: 0;
-    border-right: 1px solid var(--white, #FFF);
-    border-bottom: 1px solid var(--white, #FFF);
-    background: var(--black, #000);
-}
-.leftsidebar_1_container{
-    width: 100%;
-    position: relative;
-    left: 50%;
-    transform: translateX(-50%);
-}
-
-.stuvibe_logo_1{
-    width: 27.388px;
-    height: 16.364px;
-    flex-shrink: 0;
-    position: relative;
-    top: 40px;
-    left: 36px;
-}
-.leftsidebar_1_features{
-    display: flex;
-    width: 17px;
-    height: auto;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 35px;
-    flex-shrink: 0;
-    margin: 100px 37px;
-}
-
+} */
 .stuvibe_logo_2{
     position: relative;
-    top: 20px ;
+    top: 20px;
     left: 40px;
 }
 .stuvibe_logo_2 p{
@@ -100,23 +64,27 @@ body{
     align-items: center;
     gap: 25px;
 }
-.leftsidebar_2_container{
-    width: 100%;
+.leftsidebar_2{
     position: relative;
-    left: 50%;
-    transform: translateX(-50%);
+    width: 233px;
+    height: auto;
+    flex-shrink: 0;
+    background: #000;
 }
 
 .leftsidebar_2_container{
     width: 100%;
-    position: fixed;
-    overflow: hidden;
     height: 100vh;
+    background-color: #000;
+    /* position: fixed;
+    overflow-y: auto; */
+    left: 0px;  
+    top: 0px;
 }
 .leftsidebar_2_features{
     display: inline-flex;
     height: auto;
-    width: 233px;
+    width: 100%;
     overflow-y: auto;
     height: 100%;
     flex-direction: column;
@@ -125,57 +93,46 @@ body{
     flex-shrink: 0;
     margin: 50px 0px;
 }
+
 .leftsidebar_2_features::-webkit-scrollbar{
     display: block;
+    width: 5px;
+    height: 5px;
+    background-color: #1a1a1a;
+    position: relative;
+    right: 0px;
+}
+.leftsidebar_2_container::-webkit-scrollbar,.leftsidebar_1_container::-webkit-scrollbar{
+    display: block  ;
     width: 5px;
     background-color: #1a1a1a;
     position: relative;
     right: 0px;
 }
-.leftsidebar_2_features::-webkit-scrollbar-thumb{
+::-webkit-scrollbar-thumb{
     background-color: rgba(255, 255, 255, 0.692); 
     border-radius: 5px;
-}
-.leftsidebar_2{
-    width: 233px;
-    height: auto;
-    flex-shrink: 0;
-    background: var(--black);
 }
 .leftsidebar_1{
     display: block;
 }
-
-/* .profile_photo_2{
-    width: 20px;
-    height: 20px;
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 100%;
-}
-.profile_photo_2 img{
-    height: auto;
-    width: 100%;
-} */
-
-/* .leftsidebar_1{
-    display: none;
+.leftsidebar_1{
+    position: relative;
     width: 100px;
-    height: 1080px;
+    height: 100vh;
     flex-shrink: 0;
-    border-right: 1px solid var(--white, #FFF);
-    border-bottom: 1px solid var(--white, #FFF);
-    background: var(--black, #000);
+    background: #000;
+    
 }
 .leftsidebar_1_container{
-    width: 100%;
-    position: relative;
-    left: 50%;
-    transform: translateX(-50%);
-}
+    width: 100px;
+    height: 100vh;
+    overflow-y: auto;
+    left: 0px;
+    top: 0px;
+    border-right: 1px solid #1a1a1a;
 
+}
 .stuvibe_logo_1{
     width: 27.388px;
     height: 16.364px;
@@ -185,107 +142,16 @@ body{
     left: 36px;
 }
 .leftsidebar_1_features{
-    display: flex;
-    width: 17px;
-    height: 790px;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 35px;
-    flex-shrink: 0;
-    margin: 100px 37px;
-}
-
-.leftsidebar_2{
-    display: none;
-    width: 233px;
-    height: 4654px;
-    flex-shrink: 0;
-    border-right: 0.5px solid var(--white, #FFF);
-    background: var(--black);
-}
-
-.stuvibe_logo_2{
-    position: relative;
-    top: 22px ;
-    left: 40px;
-}
-.stuvibe_logo_2 p{
-    width: 133px;
-    height: 84.875px;
-    flex-shrink: 0;
-    color: #FFF;
-    font-family: var(--fasthand-font);
-    font-size: 56px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 150%;
-}
-.leftsidebar_2_features{
+    width: 100%;
     display: inline-flex;
-    height: 1350.422px;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 35px;
-    flex-shrink: 0;
-    margin: 80px 42px;
-}
-.feature_leftsidebar_2 p{
-    color: #FFF;
-    font-family: var(--poppins-font);
-    font-size: 12px;
-    font-style: normal;
-    font-weight: 800;
-    line-height: 150%;
-}
-.feature_leftsidebar_2{
-    display: flex;
-    align-items: center;
-    gap: 25px;
-}
-.leftsidebar_2_container{
-    width: 100%;
-    position: relative;
-    left: 50%;
-    transform: translateX(-50%);
-}
-.leftsidebar{
-    position: sticky;
-}
-.leftsidebar_1{
-    display: block;
-}
-
-
-.leftsidebar_profile_img{
-    width: 20px;
-    height: 20px;
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 100%;
-}
-.leftsidebar_profile_img img{
-    width: 100%;
+    overflow-y: auto;
     height: auto;
+    flex-direction: column;
+    align-items: center;
+    gap: 35px;
+    margin: 100px 0px;
 }
-.leftsidebar_1{
-    position: fixed;
-    height: 650px;
-    overflow-y: scroll;
-}
-.leftsidebar_1::-webkit-scrollbar{
-    display: none;
-} */
-
-.leftsidebar_1{
-    position: fixed;
-    height: 650px;
-    overflow-y: scroll;
-}
-.leftsidebar_1::-webkit-scrollbar{
-    display: none;
-} 
 .leftsidebar{
     position: fixed;
 }
+

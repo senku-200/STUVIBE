@@ -4,13 +4,21 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Messages</title>
-	<link rel="stylesheet" href="../static/styles/styles.css?{% now 'U' %}">
+	<link rel="stylesheet" href="../static/styles/leftbar.css?{% now 'U' %}">
     <link rel="stylesheet" href="../static/styles/message.css?{% now 'U' %}">
 </head>
 <body>
-	<div class="leftsidebar">
-        {% include 'leftbar.html' %}
-    </div>
+
+	{% include 'leftbar.html' %}
+	<div class="leftsidebar_expander">
+		<svg  class="leftsidebar_expander_svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 26 21" fill="none"><path d="M1 1H25M1 10.5H25M1 20H25" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+		</svg>
+	</div>
+	<div class="leftsidebar_collapser">
+		<svg class="leftsidebar_collapser_svg" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+			<path d="M1.56322 0.266174L10 8.70318L18.4368 0.266174C18.7644 -0.0614248 19.2799 -0.0866233 19.6364 0.190576L19.7338 0.278023C20.0887 0.632922 20.0887 1.20833 19.7338 1.56323L11.2968 10L19.7338 18.4368C20.0614 18.7644 20.0866 19.2799 19.8094 19.6364L19.722 19.7338C19.3671 20.0887 18.7917 20.0887 18.4368 19.7338L10 11.2968L1.56322 19.7338C1.23562 20.0614 0.720135 20.0866 0.363631 19.8094L0.266175 19.722C-0.088724 19.3671 -0.088724 18.7917 0.266175 18.4368L8.70318 10L0.266175 1.56323C-0.0614235 1.23563 -0.0866256 0.720142 0.190573 0.363637L0.278045 0.266174C0.632944 -0.0887247 1.20832 -0.0887247 1.56322 0.266174ZM0.908762 0.920625L9.98841 10L0.908762 19.0794L0.920632 19.0912L10 10.0116L19.0794 19.0912L19.0912 19.0794L10.0116 10L19.0912 0.920625L19.0794 0.908776L10 9.9884L0.920632 0.908776L0.908762 0.920625Z" fill="white"/>
+		  </svg>
+	</div>
 	<main>
 		<div class="current_msg_users_con">
 			<p class="username">@{{user}}</p>
@@ -121,6 +129,22 @@
 			  document.getElementById('body').value = ''
 			});
 		</script>
+
 	{% endif %}
+	<script>
+		let expander = document.querySelector('.leftsidebar_expander_svg')
+		let collapser = document.querySelector('.leftsidebar_collapser_svg')
+		let collapser_con = document.querySelector('.leftsidebar_collapser')
+		let leftsidebar = document.querySelector('.leftsidebar')
+		expander.addEventListener('click',()=>{
+			leftsidebar.classList.add('activate');
+			collapser_con.classList.add('activate');
+		})
+		collapser.addEventListener('click',()=>{
+			leftsidebar.classList.remove('activate');
+			collapser_con.classList.remove('activate');
+	
+		})
+	</script>
 </body>
 </html>
