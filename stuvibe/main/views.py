@@ -88,6 +88,7 @@ def signup(request):
             # user.profile_banner = request.POST['profile_banner']
             user.is_staff = True
             user.save()
+            return redirect('login')
         else:
             print(form.errors)
     context = {'form':form}
